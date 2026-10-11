@@ -34,9 +34,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ——— Cursor ——— */
-*, *:hover { cursor: none !important; }
-
 /* ——— Scrollbar ——— */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: #FAF9F6; }

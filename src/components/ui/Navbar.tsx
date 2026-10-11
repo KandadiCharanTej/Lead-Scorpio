@@ -1,115 +1,188 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import Image from "next/image";
 
-const navLinks = [
-  { label: "Services", href: "#services" },
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+interface NavLink {
+  label: string;
+  href: string;
+  id: string;
+}
+
+const navLinks: NavLink[] = [
+  { label: "Services", href: "#services", id: "services" },
+  { label: "How It Works", href: "#how-it-works", id: "how-it-works" },
+  { label: "About", href: "#about", id: "about" },
+  { label: "Contact", href: "#contact", id: "contact" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { scrollY } = useScroll();
-  const opacity = useTransform(scrollY, [0, 80], [0, 1]);
+  const [activeSection, setActiveSection] = useState<string>("");
 
+  // Smooth scroll detection
   useEffect(() => {
-    const unsub = scrollY.on("change", v => setScrolled(v > 60));
-    return unsub;
-  }, [scrollY]);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 40);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Track active section via IntersectionObserver with hysteresis to avoid flickering
+  useEffect(() => {
+    const observerOptions = {
+      root: null,
+      rootMargin: "-25% 0px -55% 0px",
+      threshold: 0,
+    };
+
+    const handleIntersect: IntersectionObserverCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(handleIntersect, observerOptions);
+
+    navLinks.forEach((link) => {
+      const el = document.getElementById(link.id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <>
-      <motion.nav
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed top-0 left-0 right-0 z-50"
+    <header
+      role="banner"
+      className={`fixed left-0 right-0 z-50 transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        scrolled
+          ? "top-3 sm:top-5 px-4 sm:px-6 pointer-events-none flex justify-center"
+          : "top-0 px-0 w-full bg-[#FAF9F6]"
+      }`}
+    >
+      <div
+        className={`w-full transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-center justify-between pointer-events-auto ${
+          scrolled
+            ? "max-w-[1140px] h-[60px] sm:h-[64px] rounded-full bg-[#FAF9F6]/95 backdrop-blur-xl shadow-[0_8px_30px_rgba(7,21,37,0.04)] px-6 sm:px-8"
+            : "max-w-7xl mx-auto h-[74px] sm:h-[78px] px-6 md:px-10 lg:px-12"
+        }`}
       >
-        {/* Blur backdrop */}
-        <motion.div
-          style={{ opacity }}
-          className="absolute inset-0 bg-[var(--color-brand-white)]/90 backdrop-blur-xl border-b border-[var(--color-brand-navy)]/8"
-        />
+        {/* LEFT — BRAND: Original LeadScorpio Logo */}
+        <a
+          href="#"
+          className="flex items-center shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C65D2E]/40 rounded-full transition-all duration-200 hover:opacity-85 hover:scale-[1.02] active:scale-[0.98]"
+          aria-label="LeadScorpio - Back to top"
+        >
+          <Image
+            src="/Logo_darktext.png"
+            alt="LeadScorpio"
+            width={170}
+            height={56}
+            className="w-[112px] sm:w-[118px] h-auto object-contain"
+            priority
+          />
+        </a>
 
-        <div className="relative max-w-7xl mx-auto px-6 md:px-10 h-16 md:h-20 flex items-center justify-between">
-          {/* Logo */}
-          <a href="#" className="flex items-center group">
-            <Image
-              src="/Logo_darktext.png"
-              alt="LeadScorpio"
-              width={220}
-              height={80}
-              className="h-18 w-auto object-contain"
-              priority
+        {/* CENTER — NAVIGATION: Refined Needle-Style Pill Hover with Copper Bloom */}
+        <nav
+          role="navigation"
+          aria-label="Main Navigation"
+          className="hidden md:flex items-center gap-1.5 lg:gap-2.5 p-1 rounded-full bg-[#071525]/[0.025]"
+        >
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.id;
+            return (
+              <a
+                key={link.id}
+                href={link.href}
+                className={`relative inline-flex items-center justify-center py-2 px-4 text-[13.5px] font-medium tracking-tight rounded-full transition-all duration-250 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C65D2E]/40 group ${
+                  isActive
+                    ? "text-[#071525] font-semibold bg-white shadow-sm"
+                    : "text-[#526071] hover:text-[#071525] hover:bg-white/80 hover:shadow-[0_2px_8px_rgba(7,21,37,0.03)]"
+                }`}
+                aria-current={isActive ? "page" : undefined}
+              >
+                <span className="transition-colors duration-200">
+                  {link.label}
+                </span>
+              </a>
+            );
+          })}
+        </nav>
+
+        {/* RIGHT — PRIMARY CTA: Premium Pill with Subtle Elevation */}
+        <div className="hidden sm:flex items-center">
+          <a
+            href="#contact"
+            className="relative inline-flex items-center justify-center gap-1.5 h-[38px] sm:h-[40px] px-5 rounded-full bg-[#C65D2E] text-white text-[12.5px] font-medium tracking-normal transition-all duration-250 ease-out hover:bg-[#A64B24] hover:shadow-[0_6px_20px_rgba(198,93,46,0.35)] hover:-translate-y-0.5 active:translate-y-0 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C65D2E]/50 shadow-sm"
+          >
+            <span>Book a Strategy Call</span>
+            <ArrowUpRight
+              size={13}
+              aria-hidden="true"
+              className="text-white/90 transition-transform duration-250 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none shrink-0"
             />
           </a>
+        </div>
 
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-8">
-            {navLinks.map(link => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-[var(--color-brand-navy)]/70 hover:text-[var(--color-brand-navy)] transition-colors copper-line"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-
-          {/* CTA */}
-          <div className="hidden md:block">
-            <a
-              href="#contact"
-              className="relative inline-flex items-center gap-2 px-6 py-2.5 text-sm font-semibold text-[var(--color-brand-white)] bg-[var(--color-brand-copper)] rounded-full overflow-hidden group transition-all duration-500 hover:bg-[var(--color-brand-copper-dark)] hover:shadow-[0_8px_30px_rgba(198,93,46,0.35)]"
-            >
-              <span className="relative z-10">Book a Strategy Call</span>
-              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-            </a>
-          </div>
-
-          {/* Mobile menu button */}
+        {/* MOBILE — MENU TRIGGER */}
+        <div className="flex items-center gap-2.5 sm:hidden">
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 text-[var(--color-brand-navy)]"
-            aria-label="Toggle menu"
+            className="p-2 text-[#071525] hover:text-[#C65D2E] hover:bg-[#071525]/[0.04] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C65D2E]/40 rounded-full transition-colors"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
           >
-            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
-      </motion.nav>
+      </div>
 
-      {/* Mobile drawer */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: mobileOpen ? 1 : 0, y: mobileOpen ? 0 : -10, pointerEvents: mobileOpen ? "auto" : "none" }}
-        transition={{ duration: 0.3 }}
-        className="fixed top-16 left-0 right-0 z-40 bg-[var(--color-brand-white)] border-b border-[var(--color-brand-navy)]/10 px-6 py-6 flex flex-col gap-4 md:hidden"
-      >
-        {navLinks.map(link => (
-          <a
-            key={link.href}
-            href={link.href}
-            onClick={() => setMobileOpen(false)}
-            className="text-base font-medium text-[var(--color-brand-navy)] py-1 border-b border-[var(--color-brand-navy)]/5"
-          >
-            {link.label}
-          </a>
-        ))}
-        <a
-          href="#contact"
-          onClick={() => setMobileOpen(false)}
-          className="mt-2 text-center py-3 font-semibold text-[var(--color-brand-white)] bg-[var(--color-brand-copper)] rounded-full text-sm"
+      {/* MOBILE MENU PANEL */}
+      {mobileOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile Navigation"
+          className="fixed inset-x-4 top-[76px] z-50 bg-[#FAF9F6] rounded-3xl p-5 flex flex-col gap-4 sm:hidden shadow-xl animate-in fade-in zoom-in-95 duration-200 pointer-events-auto"
         >
-          Book a Strategy Call
-        </a>
-      </motion.div>
-    </>
+          <nav className="flex flex-col gap-1">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.id;
+              return (
+                <a
+                  key={link.id}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className={`flex items-center justify-between py-2.5 px-3.5 rounded-full text-sm font-medium transition-colors ${
+                    isActive
+                      ? "text-[#071525] bg-white font-semibold shadow-sm"
+                      : "text-[#526071] hover:text-[#C65D2E] hover:bg-white/60"
+                  }`}
+                >
+                  <span>{link.label}</span>
+                </a>
+              );
+            })}
+          </nav>
+
+          <a
+            href="#contact"
+            onClick={() => setMobileOpen(false)}
+            className="inline-flex items-center justify-center gap-1.5 w-full h-[42px] rounded-full bg-[#C65D2E] text-white text-xs font-medium tracking-normal transition-colors hover:bg-[#A64B24] shadow-sm"
+          >
+            <span>Book a Strategy Call</span>
+            <ArrowUpRight size={13} />
+          </a>
+        </div>
+      )}
+    </header>
   );
 }

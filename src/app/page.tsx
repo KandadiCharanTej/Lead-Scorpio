@@ -5,20 +5,19 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { ArrowRight, CheckCircle2, Link, Mail, Phone } from "lucide-react";
 import dynamic from "next/dynamic";
 
-// All components loaded via dynamic() to prevent Turbopack stale cache issues
-const HeroOrb = dynamic(
-  () => import("@/components/ui/HeroOrb").then(m => m.default),
+// HeroGlobe loaded via dynamic()
+const HeroGlobe = dynamic(
+  () => import("@/components/ui/HeroGlobe").then(m => m.default),
   {
     ssr: false,
     loading: () => (
       <div className="w-full h-full flex items-center justify-center">
-        <div className="w-32 h-32 rounded-full border border-[var(--color-brand-copper)]/30 animate-pulse" />
+        <div className="w-48 h-48 rounded-full border border-[var(--color-brand-copper)]/20 animate-pulse" />
       </div>
     ),
   }
 );
 
-const CustomCursor   = dynamic(() => import("@/components/ui/CustomCursor").then(m => m.default),       { ssr: false });
 const Navbar         = dynamic(() => import("@/components/ui/Navbar").then(m => m.default),              { ssr: false });
 const ServicesSection    = dynamic(() => import("@/components/sections/ServicesSection").then(m => m.default),    { ssr: false });
 const HowItWorksSection  = dynamic(() => import("@/components/sections/HowItWorksSection").then(m => m.default),  { ssr: false });
@@ -41,8 +40,8 @@ function HeroSection() {
   const orbScale   = useTransform(scrollYProgress, [0, 1], [1, 0.85]);
 
   // Word-by-word headline reveal
-  const line1 = "Turn Your Ideal Customers Into".split(" ");
-  const line2 = "Qualified Sales Conversations.".split(" ");
+  const line1 = "Turn the Right Prospects Into".split(" ");
+  const line2 = "Qualified Sales Opportunities.".split(" ");
 
   const wordVariants: any = {
     hidden: { opacity: 0, y: 40, rotateX: -15 },
@@ -88,29 +87,10 @@ function HeroSection() {
         className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-10 pt-36 pb-20 grid lg:grid-cols-[1fr_1fr] gap-8 lg:gap-16 items-center"
       >
         {/* Left — text content */}
-        <div className="flex flex-col items-start gap-8">
-          {/* Label pill */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-[var(--color-brand-navy)]/10 bg-[var(--color-brand-navy)]/4 backdrop-blur-sm"
-          >
-            <span className="flex items-center gap-1.5 text-xs font-semibold text-[var(--color-brand-navy)]/80">
-              <Link size={12} className="text-[#0A66C2]" /> LinkedIn
-            </span>
-            <span className="w-px h-3 bg-[var(--color-brand-navy)]/15" />
-            <span className="flex items-center gap-1.5 text-xs font-semibold text-[var(--color-brand-navy)]/80">
-              <Mail size={12} className="text-[var(--color-brand-copper)]" /> Cold Email
-            </span>
-            <span className="w-px h-3 bg-[var(--color-brand-navy)]/15" />
-            <span className="flex items-center gap-1.5 text-xs font-semibold text-[var(--color-brand-navy)]/80">
-              <Phone size={12} /> Cold Calling
-            </span>
-          </motion.div>
+        <div className="flex flex-col items-start gap-6">
 
           {/* Headline */}
-          <h1 className="text-5xl md:text-6xl lg:text-[3.75rem] xl:text-[4.5rem] font-black tracking-tighter leading-[1.02] text-[var(--color-brand-navy)]" style={{ perspective: "800px" }}>
+          <h1 className="text-4xl md:text-5xl lg:text-[3rem] xl:text-[3.5rem] font-black tracking-tighter leading-[1.06] text-[var(--color-brand-navy)]" style={{ perspective: "800px" }}>
             <div className="flex flex-wrap gap-x-3 mb-2">
               {line1.map((word, i) => (
                 <motion.span
@@ -197,46 +177,15 @@ function HeroSection() {
           </motion.div>
         </div>
 
-        {/* Right — 3D orb */}
+        {/* Right — Interactive Global Globe */}
         <motion.div
           style={{ scale: orbScale }}
           initial={{ opacity: 0, x: 40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full aspect-square max-w-[520px] mx-auto"
+          className="relative w-full mx-auto"
         >
-          {/* Outer ring decorations */}
-          <div className="absolute inset-0 rounded-full border border-[var(--color-brand-navy)]/6 animate-spin-slow" />
-          <div className="absolute inset-8 rounded-full border border-[var(--color-brand-copper)]/10 animate-counter-spin" />
-
-          {/* Pulse rings */}
-          <div className="absolute inset-[30%] rounded-full">
-            <div className="absolute inset-0 rounded-full border border-[var(--color-brand-copper)]/20 animate-pulse-ring" />
-            <div className="absolute inset-0 rounded-full border border-[var(--color-brand-copper)]/15 animate-pulse-ring [animation-delay:1s]" />
-          </div>
-
-          {/* 3D Canvas */}
-          <div className="absolute inset-0">
-            <HeroOrb />
-          </div>
-
-          {/* Corner labels */}
-          {[
-            { label: "LinkedIn", position: "top-8 left-4 md:left-0" },
-            { label: "Cold Email", position: "top-8 right-4 md:right-0" },
-            { label: "Cold Calling", position: "bottom-8 left-4 md:left-0" },
-            { label: "Appointment Setting", position: "bottom-8 right-4 md:right-0" },
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 1.8 + i * 0.1 }}
-              className={`absolute ${item.position} px-3 py-1.5 rounded-full bg-white border border-[var(--color-brand-navy)]/8 shadow-sm text-[10px] font-bold text-[var(--color-brand-navy)]/70 whitespace-nowrap`}
-            >
-              {item.label}
-            </motion.div>
-          ))}
+          <HeroGlobe />
         </motion.div>
       </motion.div>
 
@@ -341,7 +290,6 @@ function ProblemSection() {
 export default function Home() {
   return (
     <>
-      <CustomCursor />
       <Navbar />
       <main className="flex flex-col overflow-hidden">
         <HeroSection />
