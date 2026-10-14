@@ -26,7 +26,7 @@ const AboutSection       = dynamic(() => import("@/components/sections/AboutSect
 const ContactSection     = dynamic(() => import("@/components/sections/ContactSection").then(m => m.default),     { ssr: false });
 
 // ——————————————————————————————————————————
-// HERO SECTION
+// HERO SECTION — EDITORIAL B2B DESIGN
 // ——————————————————————————————————————————
 function HeroSection() {
   const heroRef = useRef<HTMLElement>(null);
@@ -34,23 +34,22 @@ function HeroSection() {
     target: heroRef,
     offset: ["start start", "end start"],
   });
-  const y          = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const opacity    = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
-  const orbScale   = useTransform(scrollYProgress, [0, 1], [1, 0.85]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
-  // Word-by-word headline reveal
+  // Exact word-by-word headline reveal
   const line1 = "Turn Your Ideal Customers Into".split(" ");
   const line2 = "Qualified Sales Conversations.".split(" ");
 
   const wordVariants: any = {
-    hidden: { opacity: 0, y: 40, rotateX: -15 },
+    hidden: { opacity: 0, y: 35, rotateX: -12 },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
       rotateX: 0,
       transition: {
-        duration: 0.8,
-        delay: 0.6 + i * 0.08,
+        duration: 0.7,
+        delay: 0.25 + i * 0.05,
         ease: [0.16, 1, 0.3, 1],
       },
     }),
@@ -59,7 +58,7 @@ function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[var(--color-brand-white)]"
+      className="relative min-h-[92vh] lg:min-h-screen flex flex-col justify-center overflow-hidden bg-[var(--color-brand-white)] pt-28 pb-16 md:pt-36 md:pb-24"
     >
       {/* Fine grid background */}
       <div
@@ -83,365 +82,508 @@ function HeroSection() {
 
       <motion.div
         style={{ y, opacity }}
-        className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-10 pt-36 pb-20 grid lg:grid-cols-[1fr_1fr] gap-8 lg:gap-16 items-center"
+        className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-10 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center"
       >
-        {/* Left — text content */}
-        <div className="flex flex-col items-start gap-6">
-
-          {/* Service Eyebrow */}
+        {/* Left Column: Editorial Content (7 cols on desktop) */}
+        <div className="lg:col-span-7 flex flex-col items-start gap-6 lg:gap-7">
+          {/* Service Eyebrow Badge */}
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--color-brand-copper)]/10 border border-[var(--color-brand-copper)]/20"
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white border border-[#071525]/[0.08] shadow-xs"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-brand-copper)] animate-pulse" />
-            <span className="text-xs font-semibold text-[var(--color-brand-copper)] tracking-wide">
+            <span className="text-[11.5px] font-semibold text-[var(--color-brand-navy)] tracking-wide">
               LinkedIn Outreach • Cold Email • Cold Calling
             </span>
           </motion.div>
 
-          {/* Headline */}
-          <h1 className="text-4xl md:text-5xl lg:text-[3rem] xl:text-[3.5rem] font-black tracking-tighter leading-[1.06] text-[var(--color-brand-navy)]" style={{ perspective: "800px" }}>
-            <div className="flex flex-wrap gap-x-3 mb-2">
-              {line1.map((word, i) => (
-                <motion.span
-                  key={i}
-                  custom={i}
-                  variants={wordVariants}
-                  initial="hidden"
-                  animate="visible"
-                  className="inline-block"
-                  style={{ transformOrigin: "bottom center" }}
-                >
-                  {word}
-                </motion.span>
-              ))}
-            </div>
-            <div className="flex flex-wrap gap-x-3">
-              {line2.map((word, i) => (
-                <motion.span
-                  key={i}
-                  custom={line1.length + i}
-                  variants={wordVariants}
-                  initial="hidden"
-                  animate="visible"
-                  className={`inline-block ${i === 0 ? "gradient-copper" : i === 1 ? "gradient-copper" : "text-[var(--color-brand-copper)]"}`}
-                  style={{ transformOrigin: "bottom center" }}
-                >
-                  {word}
-                </motion.span>
-              ))}
-            </div>
+          {/* Main Headline */}
+          <h1
+            className="text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.65rem] font-black tracking-[-0.035em] leading-[1.08] text-[var(--color-brand-navy)] max-w-2xl"
+            style={{ perspective: "1000px" }}
+          >
+            <span className="block mb-1 sm:mb-2">
+              <span className="flex flex-wrap gap-x-2.5 sm:gap-x-3">
+                {line1.map((word, i) => (
+                  <motion.span
+                    key={i}
+                    custom={i}
+                    variants={wordVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className="inline-block"
+                    style={{ transformOrigin: "bottom center" }}
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </span>
+            </span>
+            <span className="block">
+              <span className="flex flex-wrap gap-x-2.5 sm:gap-x-3">
+                {line2.map((word, i) => (
+                  <motion.span
+                    key={i}
+                    custom={line1.length + i}
+                    variants={wordVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className={`inline-block ${
+                      i === 0 || i === 1 ? "gradient-copper" : "text-[var(--color-brand-copper)]"
+                    }`}
+                    style={{ transformOrigin: "bottom center" }}
+                  >
+                    {word}
+                  </motion.span>
+                ))}
+              </span>
+            </span>
           </h1>
 
-          {/* Sub */}
+          {/* Supporting Subheadline */}
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.4, ease: [0.16, 1, 0.3, 1] }}
-            className="text-lg text-[var(--color-brand-navy)]/65 max-w-lg leading-relaxed"
+            transition={{ duration: 0.7, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="text-base sm:text-lg text-[var(--color-brand-navy)]/70 max-w-xl leading-relaxed"
           >
             LeadScorpio helps B2B companies reach the right decision-makers, start meaningful conversations, and turn targeted outbound outreach into qualified sales opportunities.
           </motion.p>
 
-          {/* CTAs */}
+          {/* Action CTAs */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.6, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col sm:flex-row items-start sm:items-center gap-4"
+            transition={{ duration: 0.7, delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 w-full sm:w-auto pt-1"
           >
             <a
               href="#contact"
-              className="relative inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[var(--color-brand-copper)] text-white font-semibold text-sm overflow-hidden group hover:bg-[var(--color-brand-copper-dark)] transition-all duration-500 hover:shadow-[0_8px_30px_rgba(198,93,46,0.4)]"
+              className="relative inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-[var(--color-brand-copper)] text-white font-semibold text-sm overflow-hidden group hover:bg-[var(--color-brand-copper-dark)] transition-all duration-300 hover:shadow-[0_8px_25px_rgba(198,93,46,0.35)] shadow-xs"
             >
-              <span className="relative z-10 flex items-center gap-2.5">
+              <span className="relative z-10 flex items-center gap-2">
                 Book a Strategy Call
-                <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
+                <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
               </span>
               <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
             </a>
 
             <a
               href="#"
-              className="inline-flex items-center gap-2.5 px-6 py-4 rounded-full border border-[var(--color-brand-navy)]/15 text-sm font-semibold text-[var(--color-brand-navy)] hover:border-[var(--color-brand-copper)]/50 hover:text-[var(--color-brand-copper)] group transition-all duration-300"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-white border border-[#071525]/10 text-sm font-semibold text-[var(--color-brand-navy)] hover:border-[var(--color-brand-copper)]/40 hover:text-[var(--color-brand-copper)] hover:shadow-xs group transition-all duration-200"
             >
               <span>Chat on WhatsApp</span>
-              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform opacity-60 group-hover:opacity-100" />
+              <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform opacity-60 group-hover:opacity-100" />
             </a>
           </motion.div>
 
-          {/* Trust micro signals */}
+          {/* Trust Micro-Indicators */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.9 }}
-            className="flex items-center gap-6 pt-2"
+            transition={{ duration: 0.8, delay: 1.15 }}
+            className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-2"
           >
             {["ICP-first targeting", "Multi-channel", "No contracts"].map((t, i) => (
-              <div key={i} className="flex items-center gap-1.5 text-xs text-[var(--color-brand-navy)]/50 font-medium">
-                <CheckCircle2 size={12} className="text-[var(--color-brand-copper)]" />
-                {t}
+              <div key={i} className="flex items-center gap-1.5 text-xs text-[var(--color-brand-navy)]/65 font-medium">
+                <CheckCircle2 size={13} className="text-[var(--color-brand-copper)] shrink-0" />
+                <span>{t}</span>
               </div>
             ))}
           </motion.div>
         </div>
 
-        {/* Right — Interactive Global Globe */}
+        {/* Right Column: 3D Dotted Globe (5 cols on desktop) */}
         <motion.div
-          style={{ scale: orbScale }}
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full mx-auto"
+          initial={{ opacity: 0, scale: 0.94 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-5 relative w-full flex items-center justify-center"
         >
           <HeroGlobe />
         </motion.div>
       </motion.div>
 
-      {/* Scroll indicator */}
+      {/* Minimalist Editorial Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 2.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        transition={{ duration: 0.8, delay: 1.3 }}
+        className="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-1.5 select-none pointer-events-none"
       >
-        <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[var(--color-brand-navy)]/40">Scroll</span>
-        <div className="w-px h-12 bg-gradient-to-b from-[var(--color-brand-navy)]/20 to-transparent" />
+        <span className="text-[9.5px] font-mono tracking-[0.25em] uppercase text-[var(--color-brand-navy)]/35 font-bold">
+          SCROLL
+        </span>
+        <div className="w-px h-8 bg-gradient-to-b from-[var(--color-brand-navy)]/20 to-transparent" />
       </motion.div>
     </section>
   );
 }
 
 // ——————————————————————————————————————————
-// SECTION 02: THE OUTBOUND REALITY — PREMIUM
+// SECTION 02: THE OUTBOUND REALITY — EDITORIAL CONNECTED PIPELINE
 // ——————————————————————————————————————————
+
+// Stage 01 UI Mockup: Precision Prospect Targeting Interface
+function ProspectTargetingMockup() {
+  return (
+    <div className="relative w-full h-[210px] sm:h-[220px] flex items-center justify-center select-none p-2">
+      {/* Background Layer: Decision-Makers Panel */}
+      <div className="absolute right-1 sm:right-2 top-2 w-[145px] sm:w-[155px] bg-white rounded-2xl p-3 border border-[#071525]/[0.08] shadow-[0_8px_24px_rgba(7,21,37,0.06)] z-10 transition-transform duration-300 group-hover:translate-x-1">
+        <div className="flex items-center gap-1.5 pb-2 mb-2 border-b border-[#071525]/[0.06]">
+          <div className="w-4 h-4 rounded-full bg-[#F7E7DF] flex items-center justify-center">
+            <div className="w-1.5 h-1.5 rounded-full bg-[#C65D2E]" />
+          </div>
+          <span className="text-[10px] font-bold text-[#071525] tracking-tight">Decision-Makers</span>
+        </div>
+        <div className="flex flex-col gap-1.5">
+          {["CEO", "CTO", "VP of Sales", "Head of Growth"].map((role, i) => (
+            <div
+              key={role}
+              className={`px-2 py-1 rounded-lg text-[9.5px] font-medium border flex items-center justify-between ${
+                i === 2
+                  ? "bg-[#C65D2E]/10 border-[#C65D2E]/40 text-[#C65D2E] font-semibold"
+                  : "bg-[#FAF9F6] border-[#071525]/[0.06] text-[#526071]"
+              }`}
+            >
+              <span>{role}</span>
+              {i === 2 && <div className="w-1.5 h-1.5 rounded-full bg-[#C65D2E]" />}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Foreground Layer: Ideal Companies Panel */}
+      <div className="absolute left-1 sm:left-2 bottom-1 w-[185px] sm:w-[195px] bg-white rounded-2xl p-3.5 border border-[#071525]/[0.08] shadow-[0_12px_32px_rgba(7,21,37,0.08)] z-20 transition-transform duration-300 group-hover:-translate-y-1">
+        <div className="flex items-center justify-between pb-2 mb-2.5 border-b border-[#071525]/[0.06]">
+          <div className="flex items-center gap-1.5">
+            <div className="w-4 h-4 rounded-md bg-[#FAF9F6] border border-[#071525]/[0.08] flex items-center justify-center">
+              <span className="text-[9px] text-[#C65D2E]">⚲</span>
+            </div>
+            <span className="text-[10.5px] font-bold text-[#071525] tracking-tight">Ideal Companies</span>
+          </div>
+          <span className="text-[9px] font-mono text-[#526071] bg-[#FAF9F6] px-1.5 py-0.5 rounded border border-[#071525]/[0.06]">
+            ICP
+          </span>
+        </div>
+        <div className="flex flex-col gap-1.5">
+          {[
+            { label: "B2B SaaS", checked: true },
+            { label: "IT & Software Services", checked: true },
+            { label: "AI & Automation", checked: true },
+            { label: "Manufacturing & Industrial", checked: false },
+          ].map((item, i) => (
+            <div key={i} className="flex items-center justify-between py-0.5 text-[9.5px]">
+              <span className={`font-medium ${item.checked ? "text-[#071525]" : "text-[#526071]/60"}`}>
+                {item.label}
+              </span>
+              <div
+                className={`w-3.5 h-3.5 rounded flex items-center justify-center transition-colors ${
+                  item.checked
+                    ? "bg-[#C65D2E] text-white shadow-xs"
+                    : "border border-[#071525]/20 bg-white"
+                }`}
+              >
+                {item.checked && <span className="text-[9px] leading-none">✓</span>}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Stage 02 UI Mockup: Contextual Message Composer
+function ContextualDialogueMockup() {
+  return (
+    <div className="relative w-full h-[210px] sm:h-[220px] flex items-center justify-center select-none p-2">
+      {/* Background Email Notification Tab */}
+      <div className="absolute left-3 top-4 w-9 h-9 rounded-xl bg-white border border-[#071525]/[0.08] shadow-sm flex items-center justify-center z-10">
+        <Mail size={15} className="text-[#C65D2E]" />
+      </div>
+
+      {/* Main Contextual Message Card */}
+      <div className="w-[210px] sm:w-[225px] bg-white rounded-2xl p-4 border border-[#071525]/[0.08] shadow-[0_12px_32px_rgba(7,21,37,0.08)] z-20 transition-transform duration-300 group-hover:-translate-y-1">
+        <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-[#071525]/[0.06]">
+          <div className="flex items-center gap-1.5">
+            <span className="text-[11px] font-bold text-[#071525]">Hi <span className="text-[#C65D2E] font-semibold">{`{{First Name}}`}</span>,</span>
+          </div>
+          <div className="w-5 h-5 rounded-full bg-[#F7E7DF] flex items-center justify-center">
+            <span className="text-[9px] text-[#C65D2E]">✦</span>
+          </div>
+        </div>
+        {/* Visualized tailored message text lines */}
+        <div className="flex flex-col gap-1.5 mb-3">
+          <div className="h-2 w-full bg-[#071525]/[0.07] rounded-full" />
+          <div className="h-2 w-[85%] bg-[#071525]/[0.07] rounded-full" />
+          <div className="h-2 w-[92%] bg-[#071525]/[0.07] rounded-full" />
+          <div className="h-2 w-[60%] bg-[#C65D2E]/25 rounded-full" />
+        </div>
+        <div className="pt-2 border-t border-[#071525]/[0.06] flex items-center justify-between">
+          <span className="text-[9px] font-mono text-[#526071]">Never a template</span>
+          <span className="text-[9px] font-semibold text-[#C65D2E] bg-[#F7E7DF] px-2 py-0.5 rounded-full">
+            100% Tailored
+          </span>
+        </div>
+      </div>
+
+      {/* Floating Outbound Send Icon */}
+      <div className="absolute right-2 sm:right-4 bottom-5 w-8 h-8 rounded-full bg-[#F7E7DF] border border-[#C65D2E]/30 flex items-center justify-center text-[#C65D2E] shadow-sm z-30 transition-transform duration-300 group-hover:scale-110">
+        <span className="text-xs">↗</span>
+      </div>
+    </div>
+  );
+}
+
+// Stage 03 UI Mockup: Structured Multi-Touch Cadence Timeline
+function StructuredCadenceMockup() {
+  return (
+    <div className="relative w-full h-[210px] sm:h-[220px] flex items-center justify-center select-none p-2">
+      {/* Cadence Steps Container */}
+      <div className="w-[220px] sm:w-[235px] bg-white rounded-2xl p-3.5 border border-[#071525]/[0.08] shadow-[0_12px_32px_rgba(7,21,37,0.08)] z-20 transition-transform duration-300 group-hover:-translate-y-1">
+        <div className="flex flex-col gap-2">
+          {[
+            {
+              channel: "in",
+              action: "Connect on LinkedIn",
+              day: "Day 1",
+              bg: "bg-[#0A66C2]",
+              text: "text-white",
+            },
+            {
+              channel: "✉",
+              action: "Send Follow-up Email",
+              day: "Day 3",
+              bg: "bg-[#F7E7DF]",
+              text: "text-[#C65D2E]",
+            },
+            {
+              channel: "☎",
+              action: "Make a Call",
+              day: "Day 7",
+              bg: "bg-[#071525]/5",
+              text: "text-[#071525]",
+            },
+            {
+              channel: "↻",
+              action: "Follow Up Again",
+              day: "Day 10",
+              bg: "bg-[#FAF9F6]",
+              text: "text-[#526071]",
+            },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="flex items-center justify-between p-1.5 rounded-xl hover:bg-[#FAF9F6] transition-colors"
+            >
+              <div className="flex items-center gap-2">
+                <div
+                  className={`w-5 h-5 rounded-md ${item.bg} ${item.text} flex items-center justify-center text-[9px] font-bold shrink-0`}
+                >
+                  {item.channel}
+                </div>
+                <span className="text-[10px] font-semibold text-[#071525]">{item.action}</span>
+              </div>
+              <span className="text-[9px] font-mono text-[#526071]/80 font-medium">{item.day}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Floating Booked Calendar Badge */}
+      <div className="absolute right-1 sm:right-2 bottom-3 w-8 h-8 rounded-xl bg-white border border-[#071525]/[0.08] shadow-md flex items-center justify-center text-[#C65D2E] z-30 transition-transform duration-300 group-hover:scale-110">
+        <span className="text-xs">📅</span>
+      </div>
+    </div>
+  );
+}
+
 function ProblemSection() {
-  const [activeCard, setActiveCard] = useState(0);
-  const card0Ref = useRef<HTMLDivElement>(null);
-  const card1Ref = useRef<HTMLDivElement>(null);
-  const card2Ref = useRef<HTMLDivElement>(null);
-
-  const cardRefs = [card0Ref, card1Ref, card2Ref];
-
-  const cards = [
+  const stages = [
     {
       number: "01",
-      label: "PRECISION TARGETING",
+      eyebrow: "PRECISION TARGETING",
       title: "Right Prospects",
-      description: "Target the exact companies and decision-makers that match your ICP—not a generic list of 10,000 contacts.",
-      stat: "3×",
-      statLabel: "higher reply rate",
+      description:
+        "Target the exact companies and decision-makers that match your ICP—not a generic list of 10,000 contacts.",
+      details: ["Define ICP", "Find relevant companies", "Identify decision-makers"],
+      mockup: <ProspectTargetingMockup />,
     },
     {
       number: "02",
-      label: "CONTEXTUAL DIALOGUE",
+      eyebrow: "CONTEXTUAL DIALOGUE",
       title: "Relevant Outreach",
-      description: "Personalized messaging built around your specific market, offer, and buyer persona. Never a template.",
-      stat: "68%",
-      statLabel: "open rate",
+      description:
+        "Personalized messaging built around your specific market, offer, and buyer persona. Never a template.",
+      details: ["Personalized messaging", "Market relevance", "Buyer-centric approach"],
+      mockup: <ContextualDialogueMockup />,
     },
     {
       number: "03",
-      label: "STRUCTURED CADENCE",
+      eyebrow: "STRUCTURED CADENCE",
       title: "Consistent Follow-Up",
-      description: "Systematic multi-touch cadences that keep qualified conversations moving toward booked meetings.",
-      stat: "5×",
-      statLabel: "more meetings",
+      description:
+        "Systematic multi-touch cadences that keep qualified conversations moving toward booked meetings.",
+      details: ["Multi-touch cadences", "Consistent follow-up", "Move to qualified meetings"],
+      mockup: <StructuredCadenceMockup />,
     },
   ];
 
-  // Track active card for the scroll progress indicator
-  useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-    cardRefs.forEach((ref, idx) => {
-      if (!ref.current) return;
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setActiveCard(idx);
-            }
-          });
-        },
-        {
-          threshold: 0.4,
-          rootMargin: "-10% 0px -20% 0px",
-        }
-      );
-      observer.observe(ref.current);
-      observers.push(observer);
-    });
-
-    return () => {
-      observers.forEach((o) => o.disconnect());
-    };
-  }, []);
-
   return (
-    <section className="relative bg-[#F7F5F0] overflow-hidden border-t border-[var(--color-brand-navy)]/10">
-      {/* Ambient radial glows */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, rgba(198,93,46,0.06) 0%, transparent 65%)" }} />
-      <div className="absolute bottom-0 right-0 w-[600px] h-[400px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, rgba(198,93,46,0.04) 0%, transparent 65%)" }} />
-      {/* Fine subtle grid */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.035]"
+    <section className="relative bg-[var(--color-brand-white)] overflow-hidden border-t border-[var(--color-brand-navy)]/8 py-24 md:py-32">
+      {/* Identical background grid treatment matching the hero */}
+      <div
+        className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: `linear-gradient(rgba(7,21,37,1) 1px, transparent 1px), linear-gradient(90deg, rgba(7,21,37,1) 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
-        }} />
+          backgroundImage: `
+            linear-gradient(rgba(7,21,37,0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(7,21,37,0.03) 1px, transparent 1px)
+          `,
+          backgroundSize: "48px 48px",
+        }}
+      />
 
-      <div className="max-w-[1280px] mx-auto px-6 md:px-10 py-24 md:py-32 relative z-10">
+      {/* Warm ambient radial glow */}
+      <div
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full pointer-events-none"
+        style={{
+          background: "radial-gradient(ellipse, rgba(198,93,46,0.04) 0%, transparent 65%)",
+        }}
+      />
 
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 32 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-16 md:mb-24"
-        >
-          <div className="inline-flex items-center gap-2.5 mb-6 px-3.5 py-1.5 rounded-full border border-[var(--color-brand-copper)]/20 bg-[var(--color-brand-copper)]/8">
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-brand-copper)] animate-pulse" />
-            <span className="text-[11px] font-mono tracking-[0.22em] uppercase text-[var(--color-brand-copper)] font-bold">
-              02 / The Outbound Reality
-            </span>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-end">
-            <h2 className="text-4xl sm:text-5xl lg:text-[54px] xl:text-[60px] font-black tracking-[-0.035em] leading-[1.06] text-[var(--color-brand-navy)]">
-              Your next customer<br />
-              is{" "}
-              <span className="relative inline-block text-[var(--color-brand-copper)]">
-                already out there.
+      <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-12 relative z-10">
+        {/* Section Header */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end mb-16 md:mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-8 flex flex-col items-start gap-4"
+          >
+            {/* Eyebrow */}
+            <div className="inline-flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-brand-copper)]" />
+              <span className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-[var(--color-brand-copper)]">
+                02 / THE OUTBOUND REALITY
               </span>
+            </div>
+
+            {/* Headline */}
+            <h2 className="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[3.85rem] font-black tracking-[-0.035em] leading-[1.06] text-[var(--color-brand-navy)]">
+              Your next customer <br className="hidden sm:inline" />
+              is <span className="text-[var(--color-brand-copper)]">already out there.</span>
             </h2>
-            <div className="lg:border-l lg:border-[var(--color-brand-navy)]/12 lg:pl-10 flex flex-col gap-6 pb-1">
-              <p className="text-[var(--color-brand-navy)]/70 text-lg leading-relaxed">
-                The challenge isn't finding thousands of contacts. It's identifying the right ones,
-                reaching the right decision-makers, and starting conversations that actually matter.
+
+            {/* Supporting Paragraph */}
+            <p className="text-base sm:text-lg text-[#526071] max-w-2xl leading-relaxed pt-1">
+              The challenge isn't finding thousands of contacts. It's identifying the right ones,
+              reaching the right decision-makers, and starting conversations that actually matter.
+            </p>
+          </motion.div>
+
+          {/* Reference Script Note on Top Right */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="hidden lg:flex lg:col-span-4 flex-col items-end text-right pb-2"
+          >
+            <div className="relative pr-6">
+              <p className="text-sm font-medium italic text-[#526071]/80 max-w-[210px] leading-snug">
+                From the right prospects to meaningful conversations.
               </p>
-              <div className="flex gap-8 pt-4 border-t border-[var(--color-brand-navy)]/10">
-                {[["80%", "of deals go to the first mover"], ["5–8", "touches to book a meeting"]].map(([val, lbl]) => (
-                  <div key={val}>
-                    <p className="text-2xl font-black text-[var(--color-brand-copper)] tracking-tight leading-none">{val}</p>
-                    <p className="text-xs text-[var(--color-brand-navy)]/60 font-medium leading-snug mt-1 max-w-[110px]">{lbl}</p>
-                  </div>
-                ))}
+              <div className="absolute right-0 bottom-0 text-[var(--color-brand-copper)] text-lg">
+                ⤷
               </div>
             </div>
+          </motion.div>
+        </div>
+
+        {/* 3 Connected Editorial Stages Container */}
+        <div className="relative">
+          {/* Continuous Copper Connector Line (Desktop SVG Path linking all 3 stages) */}
+          <div className="hidden lg:block absolute inset-0 pointer-events-none z-0">
+            <svg
+              className="w-full h-full"
+              viewBox="0 0 1200 480"
+              fill="none"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              {/* Gentle winding connector ribbon */}
+              <motion.path
+                d="M -40 240 C 140 270, 260 210, 400 240 C 540 270, 660 210, 800 240 C 940 270, 1080 200, 1240 70"
+                stroke="#C65D2E"
+                strokeWidth="1.5"
+                strokeDasharray="4 4"
+                strokeOpacity="0.4"
+                initial={{ pathLength: 0 }}
+                whileInView={{ pathLength: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
+              />
+              {/* Landmark Waypoint Rings */}
+              <circle cx="200" cy="235" r="4" fill="#FAF9F6" stroke="#C65D2E" strokeWidth="2" />
+              <circle cx="600" cy="245" r="4" fill="#FAF9F6" stroke="#C65D2E" strokeWidth="2" />
+              <circle cx="1000" cy="230" r="4" fill="#FAF9F6" stroke="#C65D2E" strokeWidth="2" />
+              <circle cx="1180" cy="115" r="3" fill="#C65D2E" />
+            </svg>
           </div>
-        </motion.div>
 
-        {/* Cards + Progress */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_72px] gap-10 items-start">
-          <div className="space-y-5">
-            {cards.map((card, i) => (
+          {/* 3 Columns Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-8 relative z-10">
+            {stages.map((stage, idx) => (
               <motion.div
-                key={card.number}
-                ref={cardRefs[i]}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: false, amount: 0.3 }}
-                transition={{ duration: 0.75, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className={`group relative rounded-2xl border transition-all duration-500 overflow-hidden cursor-default
-                  ${
-                    activeCard === i
-                      ? "bg-white border-[var(--color-brand-copper)] shadow-[0_16px_40px_rgba(7,21,37,0.08),0_0_20px_rgba(198,93,46,0.12)]"
-                      : "bg-white/80 border-[var(--color-brand-navy)]/8 hover:border-[var(--color-brand-copper)]/40 hover:bg-white hover:shadow-md"
-                  }`}
+                key={stage.number}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                className="flex flex-col group"
               >
-                {/* Top glow line */}
-                <div className={`absolute top-0 left-0 right-0 h-1 transition-all duration-500 ${
-                  activeCard === i ? "opacity-100 bg-gradient-to-r from-transparent via-[var(--color-brand-copper)] to-transparent" : "opacity-0"
-                }`} />
+                {/* 1. Interface Mockup Area */}
+                <div className="mb-6 rounded-2xl bg-[#FAF9F6] border border-[#071525]/[0.05] p-2 transition-all duration-300 group-hover:border-[#C65D2E]/25">
+                  {stage.mockup}
+                </div>
 
-                <div className="flex flex-col sm:flex-row sm:items-center gap-6 p-7 sm:p-8 lg:p-9">
-                  {/* Number */}
-                  <div className="shrink-0">
-                    <span
-                      className="text-[80px] sm:text-[96px] lg:text-[112px] font-black font-mono leading-none tracking-tight select-none"
-                      style={{
-                        background: activeCard === i ? "linear-gradient(135deg,#C65D2E,#9E431B)" : "linear-gradient(135deg,#071525 20%,#8A9AA8 100%)",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                        transition: "background 0.5s ease",
-                      }}
-                    >
-                      {card.number}
+                {/* 2. Number & Headline Header */}
+                <div className="flex items-baseline gap-3 mb-2">
+                  <span className="text-4xl sm:text-5xl font-mono font-black text-[#C65D2E]/40 group-hover:text-[#C65D2E] transition-colors duration-300">
+                    {stage.number}
+                  </span>
+                  <div>
+                    <span className="text-[10.5px] font-mono font-bold tracking-[0.18em] uppercase text-[#C65D2E] block mb-0.5">
+                      {stage.eyebrow}
                     </span>
-                  </div>
-
-                  {/* Stat badge */}
-                  <div className={`hidden sm:flex flex-col items-center justify-center w-[72px] h-[72px] rounded-2xl border gap-0.5 shrink-0 transition-all duration-500 ${
-                    activeCard === i ? "bg-[var(--color-brand-copper)]/10 border-[var(--color-brand-copper)]/30" : "bg-[var(--color-brand-navy)]/3 border-[var(--color-brand-navy)]/8"
-                  }`}>
-                    <span className={`text-lg font-black leading-none transition-colors duration-500 ${activeCard === i ? "text-[var(--color-brand-copper)]" : "text-[var(--color-brand-navy)]"}`}>
-                      {card.stat}
-                    </span>
-                    <span className={`text-[9px] font-semibold text-center leading-tight px-1 transition-colors duration-500 ${activeCard === i ? "text-[var(--color-brand-copper)]/80" : "text-[var(--color-brand-navy)]/50"}`}>
-                      {card.statLabel}
-                    </span>
-                  </div>
-
-                  {/* Divider */}
-                  <div className="hidden sm:block w-px self-stretch bg-gradient-to-b from-transparent via-[var(--color-brand-navy)]/10 to-transparent shrink-0 mx-1" />
-
-                  {/* Content */}
-                  <div className="flex-1 min-w-0">
-                    <span className="text-[10px] font-mono tracking-[0.25em] uppercase text-[var(--color-brand-copper)] font-bold mb-2 block">
-                      {card.label}
-                    </span>
-                    <h3 className="text-2xl sm:text-3xl font-black text-[var(--color-brand-navy)] tracking-tight mb-2.5 leading-tight">
-                      {card.title}
+                    <h3 className="text-2xl font-bold text-[var(--color-brand-navy)] tracking-tight">
+                      {stage.title}
                     </h3>
-                    <p className="text-[var(--color-brand-navy)]/65 text-sm sm:text-base leading-relaxed">
-                      {card.description}
-                    </p>
                   </div>
+                </div>
 
-                  {/* Arrow */}
-                  <div className="shrink-0 self-center hidden md:flex ml-4">
-                    <div className={`w-10 h-10 rounded-full flex items-center justify-center border transition-all duration-500 ${
-                      activeCard === i
-                        ? "border-[var(--color-brand-copper)] bg-[var(--color-brand-copper)] text-white shadow-[0_4px_14px_rgba(198,93,46,0.35)]"
-                        : "border-[var(--color-brand-navy)]/12 text-[var(--color-brand-navy)]/40 group-hover:border-[var(--color-brand-copper)]/40 group-hover:text-[var(--color-brand-copper)]"
-                    }`}>
-                      <ArrowRight className="w-4 h-4" />
+                {/* 3. Description */}
+                <p className="text-sm text-[#526071] leading-relaxed mb-6 pt-1">
+                  {stage.description}
+                </p>
+
+                {/* 4. Supporting Checklist Details */}
+                <div className="flex flex-col gap-2 pt-4 border-t border-[#071525]/[0.08] mt-auto">
+                  {stage.details.map((detail, dIdx) => (
+                    <div key={dIdx} className="flex items-center gap-2.5 text-xs text-[#071525]/80 font-medium">
+                      <div className="w-4 h-4 rounded-full border border-[#C65D2E]/40 flex items-center justify-center shrink-0">
+                        <CheckCircle2 size={11} className="text-[#C65D2E]" />
+                      </div>
+                      <span>{detail}</span>
                     </div>
-                  </div>
+                  ))}
                 </div>
               </motion.div>
             ))}
-          </div>
-
-          {/* Vertical Progress Indicator */}
-          <div className="hidden lg:flex sticky top-40 flex-col items-center gap-3 py-4 select-none">
-            <span className="text-[9px] font-mono tracking-[0.3em] text-[var(--color-brand-navy)]/40 uppercase font-bold">STEP</span>
-            <span className="text-sm font-black text-[var(--color-brand-copper)] font-mono">{`0${activeCard + 1}`}</span>
-            <div className="relative w-px h-32 bg-[var(--color-brand-navy)]/10 my-1">
-              <motion.div
-                className="absolute top-0 left-0 w-full bg-gradient-to-b from-[var(--color-brand-copper)] to-[#8B3D1A] rounded-full"
-                animate={{ height: `${((activeCard + 1) / 3) * 100}%` }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              />
-              {[0, 1, 2].map((idx) => (
-                <button
-                  key={idx}
-                  type="button"
-                  onClick={() => cardRefs[idx].current?.scrollIntoView({ behavior: "smooth", block: "center" })}
-                  style={{ top: `${(idx / 2) * 100}%`, transform: "translate(-50%, -50%)" }}
-                  className={`absolute left-1/2 w-3 h-3 rounded-full border-2 transition-all duration-300 cursor-pointer z-10 ${
-                    activeCard === idx
-                      ? "border-[var(--color-brand-copper)] bg-[var(--color-brand-copper)] shadow-[0_0_12px_rgba(198,93,46,0.6)]"
-                      : "border-[var(--color-brand-navy)]/25 bg-white hover:border-[var(--color-brand-copper)]/50"
-                  }`}
-                  aria-label={`Go to step ${idx + 1}`}
-                />
-              ))}
-            </div>
-            <span className="text-[9px] font-mono tracking-[0.3em] text-[var(--color-brand-navy)]/40 uppercase font-bold">03</span>
           </div>
         </div>
       </div>

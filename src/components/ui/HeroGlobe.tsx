@@ -2,7 +2,7 @@
 
 import { Globe, Marker, Arc } from "@/components/ui/cobe-globe"
 import { motion } from "framer-motion"
-import { MessageSquare, Mail, Phone, CalendarCheck } from "lucide-react"
+import { Mail, Phone, CalendarCheck } from "lucide-react"
 
 // Key international B2B hubs
 const markers: Marker[] = [
@@ -28,31 +28,31 @@ const arcs: Arc[] = [
 
 export default function HeroGlobe() {
   return (
-    <div className="relative w-full aspect-square max-w-[480px] sm:max-w-[520px] lg:max-w-[560px] mx-auto flex items-center justify-center">
-      {/* Subtle fine concentric orbital lines around the globe matching the reference */}
+    <div className="relative w-full aspect-square max-w-[460px] sm:max-w-[500px] lg:max-w-[540px] mx-auto flex items-center justify-center">
+      {/* Subtle orbital atmosphere rings */}
       <div
-        className="absolute inset-[-10%] rounded-full border border-[#C65D2E]/[0.08] pointer-events-none"
-        style={{ transform: "rotate(-18deg) scaleY(0.72)" }}
+        className="absolute inset-[-6%] rounded-full border border-[#C65D2E]/[0.1] pointer-events-none"
+        style={{ transform: "rotate(-15deg) scaleY(0.75)" }}
       />
       <div
-        className="absolute inset-[-4%] rounded-full border border-[#071525]/[0.05] pointer-events-none"
-        style={{ transform: "rotate(24deg) scaleY(0.68)" }}
+        className="absolute inset-[-1%] rounded-full border border-[#071525]/[0.06] pointer-events-none"
+        style={{ transform: "rotate(20deg) scaleY(0.7)" }}
       />
       <div
-        className="absolute inset-[6%] rounded-full border border-[#C65D2E]/[0.06] pointer-events-none"
-        style={{ transform: "rotate(45deg) scaleY(0.6)" }}
+        className="absolute inset-[8%] rounded-full border border-[#C65D2E]/[0.08] pointer-events-none"
+        style={{ transform: "rotate(40deg) scaleY(0.65)" }}
       />
 
       {/* Warm ambient depth glow behind globe */}
       <div
-        className="absolute inset-[15%] rounded-full pointer-events-none"
+        className="absolute inset-[12%] rounded-full pointer-events-none"
         style={{
-          background: "radial-gradient(circle, rgba(198,93,46,0.06) 0%, rgba(250,249,246,0) 70%)",
+          background: "radial-gradient(circle, rgba(198,93,46,0.08) 0%, rgba(250,249,246,0) 72%)",
         }}
       />
 
       {/* 3D Cobe Globe */}
-      <div className="relative w-full h-full z-10">
+      <div className="relative w-full h-full z-10 flex items-center justify-center">
         <Globe
           markers={markers}
           arcs={arcs}
@@ -70,47 +70,47 @@ export default function HeroGlobe() {
           theta={0.25}
           diffuse={1.7}
           mapSamples={16000}
-          className="w-full h-full drop-shadow-[0_20px_40px_rgba(7,21,37,0.08)]"
+          className="w-full h-full drop-shadow-[0_20px_45px_rgba(7,21,37,0.09)]"
         />
       </div>
 
-      {/* Floating stationary service labels matching the reference */}
+      {/* Floating service telemetry pills with refined placement */}
       {[
         {
-          label: "LinkedIn",
+          label: "LinkedIn Outreach",
           icon: (
-            <div className="w-4 h-4 rounded-md bg-[#0A66C2] flex items-center justify-center text-white text-[10px] font-bold">
+            <div className="w-4 h-4 rounded-[4px] bg-[#0A66C2] flex items-center justify-center text-white text-[9.5px] font-bold">
               in
             </div>
           ),
-          position: "top-10 left-3 sm:left-4",
-          delay: 1.0,
+          position: "top-6 left-2 md:left-4",
+          delay: 0.8,
         },
         {
           label: "Cold Email",
-          icon: <Mail size={14} className="text-[#C65D2E]" />,
-          position: "top-12 right-3 sm:right-4",
-          delay: 1.1,
+          icon: <Mail size={13} className="text-[#C65D2E]" />,
+          position: "top-8 right-2 md:right-4",
+          delay: 0.9,
         },
         {
           label: "Cold Calling",
-          icon: <Phone size={13} className="text-[#071525]" />,
-          position: "bottom-14 left-4 sm:left-6",
-          delay: 1.2,
+          icon: <Phone size={12} className="text-[#071525]" />,
+          position: "bottom-10 left-2 md:left-5",
+          delay: 1.0,
         },
         {
           label: "Appointment Setting",
           icon: <CalendarCheck size={13} className="text-[#C65D2E]" />,
-          position: "bottom-10 right-4 sm:right-6",
-          delay: 1.3,
+          position: "bottom-6 right-2 md:right-5",
+          delay: 1.1,
         },
       ].map((item, i) => (
         <motion.div
           key={i}
-          initial={{ opacity: 0, y: 12, scale: 0.95 }}
+          initial={{ opacity: 0, y: 10, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.6, delay: item.delay, ease: [0.16, 1, 0.3, 1] }}
-          className={`absolute ${item.position} z-20 hidden sm:flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-white/95 backdrop-blur-md border border-[#071525]/[0.08] shadow-[0_4px_20px_rgba(7,21,37,0.07)] text-xs font-semibold text-[#071525] select-none hover:border-[#C65D2E]/40 transition-colors pointer-events-auto`}
+          transition={{ duration: 0.5, delay: item.delay, ease: [0.16, 1, 0.3, 1] }}
+          className={`absolute ${item.position} z-20 hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-[#071525]/[0.08] shadow-[0_4px_16px_rgba(7,21,37,0.06)] text-[11px] font-semibold text-[#071525] select-none hover:border-[#C65D2E]/40 hover:shadow-md transition-all duration-200 pointer-events-auto`}
         >
           {item.icon}
           <span>{item.label}</span>
@@ -119,3 +119,4 @@ export default function HeroGlobe() {
     </div>
   )
 }
+
