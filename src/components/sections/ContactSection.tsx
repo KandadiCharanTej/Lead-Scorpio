@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Globe, Mail, MessageSquare, Camera, Link } from "lucide-react";
+import { Mail, Camera, Link } from "lucide-react";
 import Image from "next/image";
 
 export default function ContactSection() {
@@ -14,8 +14,7 @@ export default function ContactSection() {
       {/* CTA Banner */}
       <div className="border-b border-white/8">
         <div className="max-w-7xl mx-auto px-6 md:px-10 py-24 md:py-32 relative z-10">
-          <div className="grid lg:grid-cols-[1fr_auto] gap-10 items-center">
-            <motion.div
+          <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -32,33 +31,6 @@ export default function ContactSection() {
                 Tell us about your business and your ideal customer. We'll put together an outbound strategy designed for your market.
               </p>
             </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col gap-4"
-            >
-              <a
-                href="mailto:hello@leadscorpio.com"
-                className="relative inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[var(--color-brand-copper)] text-[var(--color-brand-white)] font-semibold overflow-hidden group hover:bg-[var(--color-brand-copper-dark)] transition-all duration-500 hover:shadow-[0_0_40px_rgba(198,93,46,0.4)] whitespace-nowrap"
-              >
-                <span className="relative z-10 flex items-center gap-3">
-                  Book a Strategy Call
-                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                </span>
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-              </a>
-              <a
-                href="#"
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full border border-white/15 text-white/80 font-semibold text-sm hover:border-white/40 hover:text-white hover:bg-white/5 transition-all duration-300 whitespace-nowrap"
-              >
-                <MessageSquare size={16} />
-                Chat on WhatsApp
-              </a>
-            </motion.div>
-          </div>
         </div>
       </div>
 
@@ -78,23 +50,15 @@ export default function ContactSection() {
             </p>
 
             <div className="flex flex-col gap-6">
-              {[
-                { icon: Mail, label: "Email", value: "hello@leadscorpio.com" },
-                { icon: MessageSquare, label: "WhatsApp", value: "Available on request" },
-              ].map((item, i) => {
-                const Icon = item.icon;
-                return (
-                  <div key={i} className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-[var(--color-brand-copper)]/10 border border-[var(--color-brand-copper)]/20 flex items-center justify-center text-[var(--color-brand-copper)]">
-                      <Icon size={16} />
-                    </div>
-                    <div>
-                      <p className="text-xs text-white/40 uppercase tracking-wider font-medium">{item.label}</p>
-                      <p className="text-white/80 font-medium text-sm">{item.value}</p>
-                    </div>
-                  </div>
-                );
-              })}
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-xl bg-[var(--color-brand-copper)]/10 border border-[var(--color-brand-copper)]/20 flex items-center justify-center text-[var(--color-brand-copper)]">
+                  <Mail size={16} />
+                </div>
+                <div>
+                  <p className="text-xs text-white/40 uppercase tracking-wider font-medium">Email</p>
+                  <p className="text-white/80 font-medium text-sm">hello@leadscorpio.com</p>
+                </div>
+              </div>
             </div>
           </motion.div>
 
@@ -180,7 +144,7 @@ export default function ContactSection() {
         <div className="max-w-7xl mx-auto px-6 md:px-10 py-12 flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex items-center gap-3">
             <Image
-              src="/Logo_whitetext.png"
+              src="/logo-white.png"
               alt="LeadScorpio"
               width={400}
               height={148}

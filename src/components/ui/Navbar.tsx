@@ -81,7 +81,7 @@ export default function Navbar() {
           aria-label="LeadScorpio - Back to top"
         >
           <Image
-            src="/Logo_darktext.png"
+            src="/logo-dark.png"
             alt="LeadScorpio"
             width={170}
             height={56}
