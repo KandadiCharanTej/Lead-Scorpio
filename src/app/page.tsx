@@ -102,7 +102,7 @@ function HeroSection() {
 
           {/* Main Headline */}
           <h1
-            className="text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.65rem] font-black tracking-[-0.035em] leading-[1.08] text-[var(--color-brand-navy)] max-w-2xl"
+            className="text-[2rem] xs:text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.65rem] font-black tracking-[-0.035em] leading-[1.08] text-[var(--color-brand-navy)] max-w-2xl"
             style={{ perspective: "1000px" }}
           >
             <span className="block mb-1 sm:mb-2">
@@ -473,7 +473,7 @@ function ProblemSection() {
             </div>
 
             {/* Headline */}
-            <h2 className="text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-[3.85rem] font-black tracking-[-0.035em] leading-[1.06] text-[var(--color-brand-navy)]">
+            <h2 className="text-3xl sm:text-5xl lg:text-[3.5rem] xl:text-[3.85rem] font-black tracking-[-0.035em] leading-[1.06] text-[var(--color-brand-navy)]">
               Your next customer <br className="hidden sm:inline" />
               is <span className="text-[var(--color-brand-copper)]">already out there.</span>
             </h2>

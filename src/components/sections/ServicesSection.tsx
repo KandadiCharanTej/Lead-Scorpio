@@ -466,9 +466,13 @@ function ColdCallingDemo({ isPaused, replayKey }: { isPaused: boolean; replayKey
   const [animStage, setAnimStage] = useState(0);
 
   useEffect(() => {
-    setAnimStage(0);
-    if (isPaused) return;
+    let t0: NodeJS.Timeout;
+    if (isPaused) {
+      setAnimStage(0);
+      return;
+    }
 
+    t0 = setTimeout(() => setAnimStage(0), 0);
     const t1 = setTimeout(() => setAnimStage(1), 600);
     const t2 = setTimeout(() => setAnimStage(2), 1600);
     const t3 = setTimeout(() => setAnimStage(3), 2700);

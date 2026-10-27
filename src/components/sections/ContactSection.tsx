@@ -131,7 +131,7 @@ export default function ContactSection() {
               </div>
 
               {/* Large Headline */}
-              <h2 className="text-4xl sm:text-5xl md:text-6xl xl:text-[4.25rem] font-black tracking-tighter text-[#071525] leading-[1.05] sm:leading-[1.03] mb-6">
+              <h2 className="text-3xl sm:text-5xl md:text-6xl xl:text-[4.25rem] font-black tracking-tighter text-[#071525] leading-[1.05] sm:leading-[1.03] mb-6">
                 Let&apos;s build your next{" "}
                 <span className="text-[#C65D2E]">pipeline.</span>
               </h2>
@@ -285,18 +285,25 @@ export default function ContactSection() {
 
               {/* Feedback messages */}
               {status === "error" && (
-                <div className="flex items-center gap-2 p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm">
+                <div role="alert" className="flex items-center gap-2 p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm">
                   <AlertCircle size={18} className="shrink-0" />
                   <span>{errorMessage}</span>
                 </div>
               )}
 
               {status === "success" && (
-                <div className="flex items-center gap-2 p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm">
+                <div role="status" className="flex items-center gap-2 p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm">
                   <CheckCircle2 size={18} className="shrink-0" />
-                  <span>Your email client is opening with your details prefilled. We look forward to speaking!</span>
+                  <span>Your inquiry has been received! Redirecting to confirmation...</span>
                 </div>
               )}
+
+              <p className="text-xs text-[#526071] text-left">
+                By submitting this form, you acknowledge that your information will be processed in accordance with our{" "}
+                <a href="/privacy" className="text-[#C65D2E] underline hover:text-[#A64B24]">
+                  Privacy Policy
+                </a>.
+              </p>
 
               {/* Submit Button */}
               <button
@@ -412,62 +419,40 @@ export default function ContactSection() {
                 <ul className="flex flex-col gap-2.5 text-xs sm:text-[13px] text-[#8B96A5]">
                   <li>
                     <a href="#about" className="hover:text-white transition-colors duration-200">
-                      About Us
+                      Our Philosophy
                     </a>
                   </li>
                   <li>
                     <a href="#how-it-works" className="hover:text-white transition-colors duration-200">
-                      How It Works
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#services" className="hover:text-white transition-colors duration-200">
-                      Case Studies
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#about" className="hover:text-white transition-colors duration-200">
-                      Blog
+                      Our Process
                     </a>
                   </li>
                   <li>
                     <a href="#contact" className="hover:text-white transition-colors duration-200">
-                      Careers
+                      Book Strategy Call
                     </a>
                   </li>
                 </ul>
               </div>
 
-              {/* RESOURCES */}
+              {/* OUTREACH CHANNELS */}
               <div className="flex flex-col gap-3.5">
                 <span className="text-[11px] sm:text-xs font-bold tracking-[0.18em] uppercase text-[#C65D2E]">
-                  RESOURCES
+                  CONNECT
                 </span>
                 <ul className="flex flex-col gap-2.5 text-xs sm:text-[13px] text-[#8B96A5]">
                   <li>
-                    <a href="#how-it-works" className="hover:text-white transition-colors duration-200">
-                      Guides
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#how-it-works" className="hover:text-white transition-colors duration-200">
-                      Templates
+                    <a href="mailto:leadscorpioofficial@gmail.com" className="hover:text-white transition-colors duration-200">
+                      Direct Email
                     </a>
                   </li>
                   <li>
                     <a href="#contact" className="hover:text-white transition-colors duration-200">
-                      Help Center
+                      Inbound Inquiry
                     </a>
                   </li>
                   <li>
-                    <a href="#about" className="hover:text-white transition-colors duration-200">
-                      Community
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#contact" className="hover:text-white transition-colors duration-200">
-                      Partner Program
-                    </a>
+                    <span className="text-[#8B96A5]/60 text-xs">Mon – Fri, Global Coverage</span>
                   </li>
                 </ul>
               </div>
