@@ -48,20 +48,29 @@ export default function ContactSection() {
 
     setStatus("submitting");
 
-    // Standard client mailto fallback since no backend API endpoint is configured
-    setTimeout(() => {
-      const subject = encodeURIComponent(`LeadScorpio Inquiry: ${formData.company || formData.name}`);
-      const body = encodeURIComponent(
-        `Name: ${formData.name}\n` +
-        `Work Email: ${formData.email}\n` +
-        `Company: ${formData.company || "N/A"}\n` +
-        `Website: ${formData.website || "N/A"}\n\n` +
-        `What do you sell:\n${formData.sell || "N/A"}\n\n` +
-        `What are you looking to achieve:\n${formData.achieve || "N/A"}`
-      );
-      window.location.href = `mailto:hello@leadscorpio.com?subject=${subject}&body=${body}`;
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setStatus("error");
+        setErrorMessage(data.error || "Failed to submit form. Please reach out to hello@leadscorpio.com.");
+        return;
+      }
+
       setStatus("success");
-    }, 600);
+      // Redirect to thank-you confirmation page
+      window.location.href = "/thank-you";
+    } catch (err) {
+      console.error("Submission error:", err);
+      setStatus("error");
+      setErrorMessage("Network error. Please try again or email hello@leadscorpio.com directly.");
+    }
   };
 
   return (
@@ -470,23 +479,18 @@ export default function ContactSection() {
                 </span>
                 <ul className="flex flex-col gap-2.5 text-xs sm:text-[13px] text-[#8B96A5]">
                   <li>
-                    <a href="#contact" className="hover:text-white transition-colors duration-200">
+                    <a href="/privacy" className="hover:text-white transition-colors duration-200">
                       Privacy Policy
                     </a>
                   </li>
                   <li>
-                    <a href="#contact" className="hover:text-white transition-colors duration-200">
-                      Terms
+                    <a href="/terms" className="hover:text-white transition-colors duration-200">
+                      Terms of Service
                     </a>
                   </li>
                   <li>
-                    <a href="#contact" className="hover:text-white transition-colors duration-200">
-                      Security
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#contact" className="hover:text-white transition-colors duration-200">
-                      Cookies
+                    <a href="mailto:hello@leadscorpio.com?subject=Security%20Inquiry" className="hover:text-white transition-colors duration-200">
+                      Security & Compliance
                     </a>
                   </li>
                 </ul>
