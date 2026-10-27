@@ -59,7 +59,7 @@ export default function ContactSection() {
 
       if (!res.ok) {
         setStatus("error");
-        setErrorMessage(data.error || "Failed to submit form. Please reach out to hello@leadscorpio.com.");
+        setErrorMessage(data.error || "Failed to submit form. Please reach out to leadscorpioofficial@gmail.com.");
         return;
       }
 
@@ -69,7 +69,7 @@ export default function ContactSection() {
     } catch (err) {
       console.error("Submission error:", err);
       setStatus("error");
-      setErrorMessage("Network error. Please try again or email hello@leadscorpio.com directly.");
+      setErrorMessage("Network error. Please try again or email leadscorpioofficial@gmail.com directly.");
     }
   };
 
@@ -144,7 +144,7 @@ export default function ContactSection() {
 
             {/* Subtle Contact Detail Panel */}
             <motion.a
-              href="mailto:hello@leadscorpio.com"
+              href="mailto:leadscorpioofficial@gmail.com"
               whileHover={{ y: -2 }}
               transition={{ duration: 0.2 }}
               className="group inline-flex items-center gap-4 p-4 sm:p-5 rounded-2xl bg-[#F7E7DF]/40 hover:bg-[#F7E7DF]/70 border border-[#C65D2E]/15 transition-all duration-300 w-fit max-w-sm"
@@ -157,7 +157,7 @@ export default function ContactSection() {
                   Email
                 </span>
                 <span className="block text-sm sm:text-base font-bold text-[#071525] group-hover:text-[#C65D2E] transition-colors">
-                  hello@leadscorpio.com
+                  leadscorpioofficial@gmail.com
                 </span>
               </div>
             </motion.a>
@@ -489,7 +489,7 @@ export default function ContactSection() {
                     </a>
                   </li>
                   <li>
-                    <a href="mailto:hello@leadscorpio.com?subject=Security%20Inquiry" className="hover:text-white transition-colors duration-200">
+                    <a href="mailto:leadscorpioofficial@gmail.com?subject=Security%20Inquiry" className="hover:text-white transition-colors duration-200">
                       Security & Compliance
                     </a>
                   </li>

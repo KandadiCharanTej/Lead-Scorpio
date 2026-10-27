@@ -97,8 +97,8 @@ export default function PrivacyPolicy() {
             </p>
             <p>
               To exercise any of these rights, please contact our team directly at{" "}
-              <a href="mailto:hello@leadscorpio.com" className="text-[#C65D2E] font-semibold hover:underline">
-                hello@leadscorpio.com
+              <a href="mailto:leadscorpioofficial@gmail.com" className="text-[#C65D2E] font-semibold hover:underline">
+                leadscorpioofficial@gmail.com
               </a>.
             </p>
           </section>
@@ -107,8 +107,8 @@ export default function PrivacyPolicy() {
             <h2 className="text-lg sm:text-xl font-bold text-[#071525] mb-3">6. Contact Information</h2>
             <p>
               If you have questions regarding this Privacy Policy or data processing practices, please email:{" "}
-              <a href="mailto:hello@leadscorpio.com" className="text-[#C65D2E] font-semibold hover:underline">
-                hello@leadscorpio.com
+              <a href="mailto:leadscorpioofficial@gmail.com" className="text-[#C65D2E] font-semibold hover:underline">
+                leadscorpioofficial@gmail.com
               </a>.
             </p>
           </section>

@@ -88,8 +88,8 @@ export default function TermsPage() {
             <h2 className="text-lg sm:text-xl font-bold text-[#071525] mb-3">6. Contact Inquiries</h2>
             <p>
               For legal inquiries regarding these terms, reach us at:{" "}
-              <a href="mailto:hello@leadscorpio.com" className="text-[#C65D2E] font-semibold hover:underline">
-                hello@leadscorpio.com
+              <a href="mailto:leadscorpioofficial@gmail.com" className="text-[#C65D2E] font-semibold hover:underline">
+                leadscorpioofficial@gmail.com
               </a>.
             </p>
           </section>

@@ -55,7 +55,7 @@ export async function POST(req: Request) {
     const safeAchieve = typeof achieve === "string" ? achieve.trim().slice(0, 1000) : "";
 
     const apiKey = process.env.RESEND_API_KEY;
-    const recipientEmail = process.env.CONTACT_EMAIL || "hello@leadscorpio.com";
+    const recipientEmail = process.env.CONTACT_EMAIL || "leadscorpioofficial@gmail.com";
 
     // 4. If email delivery service credentials are provided, dispatch email via transactional API
     if (apiKey) {
@@ -92,7 +92,7 @@ export async function POST(req: Request) {
           const errData = await resendRes.text();
           console.error("Resend API error:", errData);
           return NextResponse.json(
-            { error: "Email delivery service reported an issue. Please contact hello@leadscorpio.com directly." },
+            { error: "Email delivery service reported an issue. Please contact leadscorpioofficial@gmail.com directly." },
             { status: 502 }
           );
         }
@@ -101,7 +101,7 @@ export async function POST(req: Request) {
       } catch (err) {
         console.error("Failed to connect to email provider:", err);
         return NextResponse.json(
-          { error: "Could not reach email delivery provider. Please reach out to hello@leadscorpio.com." },
+          { error: "Could not reach email delivery provider. Please reach out to leadscorpioofficial@gmail.com." },
           { status: 500 }
         );
       }

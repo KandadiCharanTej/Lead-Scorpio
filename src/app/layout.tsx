@@ -78,7 +78,7 @@ export default function RootLayout({
     image: `${siteUrl}/og-image.png`,
     description:
       "Specialized B2B outbound lead generation agency providing targeted LinkedIn outreach, cold email campaigns, cold calling, and qualified appointment setting.",
-    email: "hello@leadscorpio.com",
+    email: "leadscorpioofficial@gmail.com",
     areaServed: "Global",
     serviceType: [
       "LinkedIn Outreach",
