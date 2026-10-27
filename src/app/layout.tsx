@@ -11,6 +11,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "LeadScorpio — B2B Lead Generation & Outbound Sales",
   description: "LeadScorpio helps B2B companies build predictable outbound pipelines through targeted LinkedIn outreach, cold email, and cold calling.",
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
 };
 
 export default function RootLayout({

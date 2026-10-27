@@ -217,101 +217,121 @@ function LinkedInDemo({ isPaused, replayKey }: { isPaused: boolean; replayKey: n
 
   return (
     <div className="relative w-[280px] sm:w-[305px] bg-[#0c1622] rounded-[42px] p-2 shadow-[0_24px_50px_rgba(7,21,37,0.16)] border border-[#223347] ring-1 ring-[#071525]/80 select-none">
-      {/* Top Dynamic Island Notch */}
+      {/* Dynamic Island */}
       <div className="absolute top-3 left-1/2 -translate-x-1/2 w-20 h-3.5 bg-black rounded-full z-30 flex items-center justify-end pr-2.5">
         <span className="w-1.5 h-1.5 rounded-full bg-[#1e293b]/90 border border-white/10" />
       </div>
 
-      {/* Screen Frame */}
-      <div className="relative bg-[#FAF9F6] rounded-[34px] overflow-hidden pt-6 pb-3 px-3 flex flex-col h-[445px]">
-        {/* Contact Header with Trigger Event Badge */}
-        <div className="flex items-center justify-between pb-2 mb-2 border-b border-[#071525]/[0.08]">
+      {/* Screen Frame — Native LinkedIn App UI */}
+      <div className="relative bg-[#F3F2EF] rounded-[34px] overflow-hidden pt-6 pb-2.5 px-3 flex flex-col h-[445px]">
+        {/* LinkedIn App Header */}
+        <div className="flex items-center justify-between pb-2 mb-2 border-b border-[#000000]/10 bg-white -mx-3 -mt-1 px-3 pt-2">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-full bg-[#071525] text-white flex items-center justify-center text-[10px] font-bold">
-              SM
+            <div className="relative">
+              <div className="w-8 h-8 rounded-full bg-[#0A66C2] text-white flex items-center justify-center text-[11px] font-bold shadow-xs">
+                SM
+              </div>
+              <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-[#057642] border-2 border-white" />
             </div>
             <div className="flex flex-col">
-              <span className="text-[11px] font-bold text-[#071525] leading-none">Sarah Mitchell</span>
-              <span className="text-[8px] text-[#526071] mt-0.5">VP of Marketing • Acme Tech</span>
+              <div className="flex items-center gap-1">
+                <span className="text-[11px] font-bold text-[#000000] leading-none">Sarah Mitchell</span>
+                <span className="text-[9px] text-[#000000]/60">· 1st</span>
+              </div>
+              <span className="text-[8px] text-[#000000]/60 mt-0.5 truncate max-w-[130px]">
+                VP of Marketing • Acme Tech
+              </span>
             </div>
           </div>
-          <span className="text-[8px] px-1.5 py-0.5 rounded-full bg-[#F7E7DF] text-[#C65D2E] font-semibold">
-            Trigger: Scaling ICP
-          </span>
+
+          <div className="flex items-center gap-1 bg-[#0A66C2]/10 px-2 py-0.5 rounded-full text-[#0A66C2] text-[8px] font-bold">
+            <span className="font-sans font-black">in</span>
+            <span>InMail</span>
+          </div>
         </div>
 
         {/* Message Thread */}
-        <div className="flex-1 flex flex-col gap-2 overflow-hidden text-[10px]">
-          {/* Bubble 1: Prospect inquiry */}
+        <div className="flex-1 flex flex-col gap-2 overflow-hidden text-[10px] pt-1">
+          {/* LinkedIn Profile Info Chip */}
+          <div className="bg-white p-2 rounded-xl border border-[#000000]/[0.08] text-center mb-1 shadow-2xs">
+            <p className="text-[8px] text-[#000000]/70">
+              Joined conversation via <strong>LeadScorpio ICP Outreach</strong>
+            </p>
+          </div>
+
+          {/* Bubble 1: Prospect message */}
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: animStage >= 0 ? 1 : 0, y: animStage >= 0 ? 0 : 8 }}
-            className="bg-white p-2.5 rounded-2xl rounded-tl-xs border border-[#071525]/[0.06] shadow-2xs max-w-[85%] self-start"
+            className="bg-white p-2.5 rounded-2xl rounded-tl-xs border border-[#000000]/[0.08] shadow-2xs max-w-[85%] self-start"
           >
-            <p className="text-[#071525] font-medium leading-relaxed">
-              Hi! Do you have pricing for bulk orders?
+            <p className="text-[#191919] font-medium leading-relaxed">
+              Hi! Do you have pricing for custom outbound pipelines?
             </p>
-            <span className="text-[7.5px] text-[#526071]/70 block text-right mt-1">10:24 AM</span>
+            <span className="text-[7.5px] text-[#000000]/50 block text-right mt-1">10:24 AM</span>
           </motion.div>
 
-          {/* Bubble 2: Outbound agent tailored response */}
+          {/* Bubble 2: Outbound Specialist Reply */}
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: animStage >= 1 ? 1 : 0, y: animStage >= 1 ? 0 : 8 }}
-            className="bg-[#EBF7EE] p-2.5 rounded-2xl rounded-tr-xs border border-[#7BC68E]/30 shadow-2xs max-w-[88%] self-end"
+            className="bg-[#DCE6F1] p-2.5 rounded-2xl rounded-tr-xs border border-[#0A66C2]/20 shadow-2xs max-w-[88%] self-end"
           >
-            <p className="text-[#154622] font-medium leading-relaxed">
-              Hey Sarah 👋 Yes, here's our detailed catalog tailored for SaaS companies like yours.
+            <p className="text-[#0A66C2] font-semibold text-[8px] mb-0.5">LeadScorpio SDR</p>
+            <p className="text-[#191919] font-medium leading-relaxed">
+              Hey Sarah 👋 Yes, sharing our tailored catalog designed for high-growth B2B companies like Acme.
             </p>
-            <span className="text-[7.5px] text-[#154622]/60 block text-right mt-1">10:25 AM ✓✓</span>
+            <span className="text-[7.5px] text-[#0A66C2] block text-right mt-1 font-semibold">10:25 AM ✓✓</span>
           </motion.div>
 
-          {/* Bubble 3: Catalog Attachment */}
+          {/* Bubble 3: Document Attachment */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: animStage >= 2 ? 1 : 0, scale: animStage >= 2 ? 1 : 0.96 }}
-            className="bg-white p-2 rounded-xl border border-[#071525]/[0.08] shadow-2xs self-end flex items-center gap-2 max-w-[85%]"
+            className="bg-white p-2 rounded-xl border border-[#000000]/[0.08] shadow-2xs self-end flex items-center gap-2 max-w-[85%]"
           >
-            <div className="w-5 h-5 rounded-md bg-[#F7E7DF] text-[#C65D2E] flex items-center justify-center font-bold text-[8.5px]">
+            <div className="w-6 h-6 rounded-md bg-[#FEE2E2] text-[#DC2626] flex items-center justify-center font-bold text-[8.5px]">
               PDF
             </div>
             <div className="flex-1 min-w-0">
-              <span className="text-[9px] font-semibold text-[#071525] block truncate">Service_Catalog_2026.pdf</span>
-              <span className="text-[7.5px] text-[#526071]">2 pages • 1.2 MB</span>
+              <span className="text-[9px] font-semibold text-[#191919] block truncate">
+                Outbound_Playbook_2026.pdf
+              </span>
+              <span className="text-[7.5px] text-[#000000]/60">2 pages • 1.2 MB</span>
             </div>
-            <span className="text-[9px] text-[#C65D2E]">↓</span>
+            <span className="text-[10px] text-[#0A66C2] font-bold">↓</span>
           </motion.div>
 
           {/* Bubble 4: Positive Prospect Scheduling intent */}
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: animStage >= 3 ? 1 : 0, y: animStage >= 3 ? 0 : 8 }}
-            className="bg-white p-2.5 rounded-2xl rounded-tl-xs border border-[#071525]/[0.06] shadow-2xs max-w-[85%] self-start"
+            className="bg-white p-2.5 rounded-2xl rounded-tl-xs border border-[#000000]/[0.08] shadow-2xs max-w-[85%] self-start"
           >
-            <p className="text-[#071525] font-medium leading-relaxed">
+            <p className="text-[#191919] font-medium leading-relaxed">
               This looks great. Can we schedule a quick call this week?
             </p>
-            <span className="text-[7.5px] text-[#526071]/70 block text-right mt-1">10:27 AM</span>
+            <span className="text-[7.5px] text-[#000000]/50 block text-right mt-1">10:27 AM</span>
           </motion.div>
 
-          {/* Bubble 5: Lead Qualified & Appointment Scheduled Alert */}
+          {/* Bubble 5: Lead Qualified Alert */}
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: animStage >= 4 ? 1 : 0, y: animStage >= 4 ? 0 : 8 }}
-            className="bg-[#FFF4ED] border border-[#C65D2E]/30 rounded-xl p-2 text-center mt-1"
+            className="bg-[#EBF7EE] border border-[#057642]/30 rounded-xl p-1.5 text-center mt-auto"
           >
-            <span className="text-[8.5px] font-bold text-[#C65D2E] flex items-center justify-center gap-1">
-              ⚡ Qualified & Appointment Scheduled • Added to CRM
+            <span className="text-[8.5px] font-bold text-[#057642] flex items-center justify-center gap-1">
+              ✓ Qualified Decision-Maker • Synced with CRM
             </span>
           </motion.div>
         </div>
 
-        {/* Input Bar */}
-        <div className="pt-2 border-t border-[#071525]/[0.07] flex items-center gap-1.5 mt-auto">
-          <div className="flex-1 bg-white border border-[#071525]/[0.08] rounded-full px-2.5 py-1 text-[8.5px] text-[#526071]">
-            Type a message...
+        {/* LinkedIn Chat Input Bar */}
+        <div className="pt-2 border-t border-[#000000]/10 flex items-center gap-1.5 mt-auto bg-white -mx-3 -mb-1 px-3 py-1.5">
+          <div className="flex-1 bg-[#F3F2EF] border border-[#000000]/10 rounded-full px-2.5 py-1 text-[8.5px] text-[#000000]/60">
+            Write a message...
           </div>
-          <div className="w-5 h-5 rounded-full bg-[#C65D2E] text-white flex items-center justify-center text-[8.5px]">
+          <div className="w-6 h-6 rounded-full bg-[#0A66C2] text-white flex items-center justify-center text-[9px] font-bold">
             ➤
           </div>
         </div>
@@ -321,7 +341,7 @@ function LinkedInDemo({ isPaused, replayKey }: { isPaused: boolean; replayKey: n
 }
 
 // ——————————————————————————————————————————————————
-// DEMO 02: COLD EMAIL SMARTPHONE WORKFLOW
+// DEMO 02: COLD EMAIL SMARTPHONE WORKFLOW (NATIVE INBOX)
 // ——————————————————————————————————————————————————
 function ColdEmailDemo({ isPaused, replayKey }: { isPaused: boolean; replayKey: number }) {
   const [animStage, setAnimStage] = useState(0);
@@ -347,78 +367,92 @@ function ColdEmailDemo({ isPaused, replayKey }: { isPaused: boolean; replayKey: 
         <span className="w-1.5 h-1.5 rounded-full bg-[#1e293b]/90 border border-white/10" />
       </div>
 
-      <div className="relative bg-[#FAF9F6] rounded-[34px] overflow-hidden pt-6 pb-3 px-3 flex flex-col h-[445px]">
-        {/* Header */}
-        <div className="flex items-center justify-between pb-2 mb-2 border-b border-[#071525]/[0.08]">
+      {/* Screen Frame — Native Email Client UI */}
+      <div className="relative bg-[#FAFAFA] rounded-[34px] overflow-hidden pt-6 pb-2.5 px-3 flex flex-col h-[445px]">
+        {/* Email App Header */}
+        <div className="flex items-center justify-between pb-2 mb-2 border-b border-[#071525]/[0.08] bg-white -mx-3 -mt-1 px-3 pt-2">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-[#F7E7DF] text-[#C65D2E] flex items-center justify-center font-bold text-xs">
+            <div className="w-7 h-7 rounded-full bg-[#EA4335] text-white flex items-center justify-center font-bold text-xs shadow-xs">
               ✉
             </div>
             <div>
-              <span className="text-[11px] font-bold text-[#071525] leading-none">David Vance</span>
-              <span className="text-[8px] text-[#526071] mt-0.5">VP Marketing • CloudCore</span>
+              <span className="text-[11px] font-bold text-[#202124] leading-none block">
+                Inbox Thread (3)
+              </span>
+              <span className="text-[8px] text-[#5F6368] mt-0.5">David Vance • VP Marketing</span>
             </div>
           </div>
-          <span className="px-1.5 py-0.5 rounded-full bg-[#EBF7EE] text-[#154622] text-[8px] font-bold">
-            Active
+          <span className="px-2 py-0.5 rounded-full bg-[#E6F4EA] text-[#137333] text-[8px] font-bold">
+            Sequence Active
           </span>
         </div>
 
-        {/* Sequences */}
+        {/* Email Cards Container */}
         <div className="flex-1 flex flex-col gap-2 overflow-hidden text-[10px]">
-          {/* Step 1 */}
+          {/* Email 1: Initial Pitch */}
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: animStage >= 0 ? 1 : 0, y: animStage >= 0 ? 0 : 8 }}
-            className="p-2.5 rounded-2xl bg-white border border-[#071525]/[0.06] shadow-2xs"
+            className="p-2.5 rounded-xl bg-white border border-[#E0E0E0] shadow-xs"
           >
             <div className="flex items-center justify-between mb-1">
-              <span className="font-bold text-[#071525] text-[10px]">Scaling EMEA Outbound Pipeline</span>
-              <span className="text-[8px] font-mono text-[#526071]">Day 1</span>
+              <span className="font-bold text-[#202124] text-[9.5px]">1. Tailored Outbound Strategy</span>
+              <span className="text-[7.5px] font-mono text-[#5F6368] bg-[#F1F3F4] px-1.5 py-0.5 rounded">Day 1</span>
             </div>
-            <p className="text-[9px] text-[#526071] leading-relaxed">
-              "Noticed your recent expansion. Tailored an outbound framework to reach VP-level buyers directly..."
+            <p className="text-[8.5px] text-[#5F6368] leading-relaxed line-clamp-2">
+              "Hi David, noticed CloudCore expanding mid-market reps. We build custom outbound pipelines targeting verified VP buyers..."
             </p>
           </motion.div>
 
-          {/* Step 2 */}
+          {/* Email 2: Follow-Up Step */}
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: animStage >= 1 ? 1 : 0, y: animStage >= 1 ? 0 : 8 }}
-            className="p-2.5 rounded-2xl bg-white border border-[#C65D2E]/40 shadow-xs"
+            className="p-2.5 rounded-xl bg-white border-l-3 border-l-[#C65D2E] border-t border-r border-b border-[#E0E0E0] shadow-xs"
           >
             <div className="flex items-center justify-between mb-1">
-              <span className="font-bold text-[#C65D2E] text-[10px]">Follow-Up: Quick Context</span>
-              <span className="text-[8px] font-mono text-[#C65D2E] font-semibold">Day 4 • Sent</span>
+              <span className="font-bold text-[#C65D2E] text-[9.5px]">2. Follow-Up: Relevant Data</span>
+              <span className="text-[7.5px] font-mono text-[#C65D2E] font-semibold bg-[#F7E7DF] px-1.5 py-0.5 rounded">Day 4</span>
             </div>
-            <p className="text-[9px] text-[#071525] leading-relaxed">
-              "Sharing how our verified cadences keep relevant conversations moving without generic template spam..."
+            <p className="text-[8.5px] text-[#202124] leading-relaxed line-clamp-2">
+              "Quick bump with our benchmark response rates across Series B SaaS teams..."
             </p>
           </motion.div>
 
-          {/* Step 3 */}
+          {/* Email 3: Positive Reply from Prospect */}
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: animStage >= 2 ? 1 : 0, y: animStage >= 2 ? 0 : 8 }}
-            className="p-2.5 rounded-2xl bg-[#EBF7EE] border border-[#7BC68E]/40"
+            className="p-2.5 rounded-xl bg-[#E6F4EA] border border-[#34A853]/40 shadow-xs"
           >
             <div className="flex items-center justify-between mb-1">
-              <span className="font-bold text-[#154622] text-[10px]">Reply: Let's Connect</span>
-              <span className="text-[8px] text-[#154622]">11:15 AM</span>
+              <div className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#137333]" />
+                <span className="font-bold text-[#137333] text-[9.5px]">David Vance (Reply)</span>
+              </div>
+              <span className="text-[8px] text-[#137333] font-semibold">11:15 AM</span>
             </div>
-            <p className="text-[9px] text-[#154622]/90 leading-relaxed">
-              "Thanks for reaching out with context. Do you have 15 mins this Thursday to review alignment?"
+            <p className="text-[9px] text-[#137333] font-medium leading-relaxed">
+              "Thanks for reaching out with exact context. Do you have 15 mins this Thursday to discuss?"
             </p>
           </motion.div>
 
-          {/* Qualification Badge */}
+          {/* Qualified Notification */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: animStage >= 3 ? 1 : 0 }}
-            className="p-2 rounded-xl bg-[#FFF4ED] border border-[#C65D2E]/30 text-center text-[8.5px] font-bold text-[#C65D2E]"
+            className="p-2 rounded-xl bg-[#F7E7DF] border border-[#C65D2E]/40 text-center text-[8.5px] font-bold text-[#C65D2E] mt-auto"
           >
-            ⚡ Qualified interest — Lead transferred to calendar scheduling
+            ⚡ Positive Reply Received → Meeting Routing Initiated
           </motion.div>
+        </div>
+
+        {/* Quick Reply Bar */}
+        <div className="pt-2 border-t border-[#E0E0E0] flex items-center justify-between text-[9px] text-[#5F6368] bg-white -mx-3 -mb-1 px-3 py-1.5">
+          <span className="flex items-center gap-1 font-semibold text-[#1A73E8]">
+            ↩ Reply to David
+          </span>
+          <span className="text-[8px] bg-[#F1F3F4] px-2 py-0.5 rounded-full">Archive</span>
         </div>
       </div>
     </div>
@@ -426,7 +460,7 @@ function ColdEmailDemo({ isPaused, replayKey }: { isPaused: boolean; replayKey: 
 }
 
 // ——————————————————————————————————————————————————
-// DEMO 03: COLD CALLING SMARTPHONE DEMO
+// DEMO 03: COLD CALLING SMARTPHONE DEMO (NATIVE PHONE CALL SCREEN)
 // ——————————————————————————————————————————————————
 function ColdCallingDemo({ isPaused, replayKey }: { isPaused: boolean; replayKey: number }) {
   const [animStage, setAnimStage] = useState(0);
@@ -452,64 +486,83 @@ function ColdCallingDemo({ isPaused, replayKey }: { isPaused: boolean; replayKey
         <span className="w-1.5 h-1.5 rounded-full bg-[#1e293b]/90 border border-white/10" />
       </div>
 
-      <div className="relative bg-[#FAF9F6] rounded-[34px] overflow-hidden pt-6 pb-3 px-3 flex flex-col h-[445px]">
-        {/* Header */}
-        <div className="flex items-center justify-between pb-2 mb-2 border-b border-[#071525]/[0.08]">
-          <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-full bg-[#071525] text-white flex items-center justify-center text-xs font-bold">
-              📞
-            </div>
-            <div>
-              <span className="text-[11px] font-bold text-[#071525] leading-none">Alex Morgan</span>
-              <span className="text-[8px] text-[#526071] mt-0.5">Chief Revenue Officer • FinScale</span>
-            </div>
+      {/* Screen Frame — Native iOS Phone Call Screen */}
+      <div className="relative bg-[#071525] rounded-[34px] overflow-hidden pt-7 pb-3 px-3 flex flex-col h-[445px] text-white">
+        {/* Caller Avatar & Status */}
+        <div className="flex flex-col items-center text-center pt-2 pb-3">
+          <div className="w-14 h-14 rounded-full bg-[#1E2E42] border-2 border-[#C65D2E] flex items-center justify-center text-xl font-bold mb-2 shadow-md">
+            AM
           </div>
-          <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-[#EBF7EE] text-[#154622] text-[8.5px] font-bold">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#154622] animate-pulse" />
-            <span>Connected</span>
+          <h4 className="text-sm font-bold text-white tracking-tight">Alex Morgan</h4>
+          <p className="text-[9px] text-[#A0AEC0]">Chief Revenue Officer • FinScale</p>
+          <div className="flex items-center gap-1.5 mt-1.5 px-2 py-0.5 rounded-full bg-[#154622]/40 border border-[#7BC68E]/30 text-[#7BC68E] text-[8.5px] font-mono">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#7BC68E] animate-pulse" />
+            <span>02:45 Connected</span>
           </div>
         </div>
 
-        {/* Content */}
-        <div className="flex-1 flex flex-col gap-2 overflow-hidden text-[10px]">
-          {/* Preparation Card */}
+        {/* Live Call Notes & Qualification */}
+        <div className="flex-1 flex flex-col gap-2 overflow-hidden text-[9px]">
+          {/* Preparation / Script Card */}
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: animStage >= 0 ? 1 : 0, y: animStage >= 0 ? 0 : 8 }}
-            className="p-2.5 rounded-2xl bg-white border border-[#071525]/[0.06] shadow-2xs"
+            className="p-2.5 rounded-xl bg-white/5 border border-white/10"
           >
-            <span className="text-[8.5px] font-bold font-mono uppercase text-[#C65D2E] block mb-1">
-              PREPARATION // TALKING POINTS
+            <span className="text-[8px] font-mono font-bold text-[#E27D4C] block mb-0.5">
+              TARGET ICP VERIFIED
             </span>
-            <p className="text-[9px] text-[#071525] leading-relaxed">
-              • Context: High-growth B2B fintech expanding mid-market accounts.<br />
-              • Offer: Structured outbound SDR cadence targeting VP-level buyers.
+            <p className="text-[8.5px] text-[#FAF9F6]/80 leading-relaxed">
+              • Pain: Sales reps spending 40% time on manual lead research.<br />
+              • Offer: Dedicated outbound pipeline targeting B2B finance leaders.
             </p>
           </motion.div>
 
-          {/* Conversation Outcome */}
+          {/* Live Outcome Notes */}
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: animStage >= 1 ? 1 : 0, y: animStage >= 1 ? 0 : 8 }}
-            className="p-2.5 rounded-2xl bg-white border border-[#C65D2E]/40 shadow-xs"
+            className="p-2.5 rounded-xl bg-white/5 border border-[#C65D2E]/40"
           >
-            <div className="flex items-center justify-between mb-1">
-              <span className="font-bold text-[#071525] text-[10px]">Outcome: Genuine Interest</span>
-              <span className="text-[8px] text-[#C65D2E] font-semibold">Duration: 3m 28s</span>
+            <div className="flex items-center justify-between mb-0.5">
+              <span className="font-bold text-[#FAF9F6]">Prospect Sentiment</span>
+              <span className="text-[8px] text-[#E27D4C] font-semibold">High Intent</span>
             </div>
-            <p className="text-[9px] text-[#526071] leading-relaxed">
-              Decision-maker validated pipeline fit and agreed to receive outbound briefing document.
+            <p className="text-[8.5px] text-[#A0AEC0] leading-relaxed">
+              Alex agreed to 30-min strategy presentation with CRO and sales team.
             </p>
           </motion.div>
 
-          {/* Next Steps */}
+          {/* Action Logged */}
           <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: animStage >= 2 ? 1 : 0, y: animStage >= 2 ? 0 : 8 }}
-            className="p-2 rounded-xl bg-[#FFF4ED] border border-[#C65D2E]/30 text-center text-[8.5px] font-bold text-[#C65D2E]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: animStage >= 2 ? 1 : 0 }}
+            className="p-2 rounded-xl bg-[#C65D2E]/20 border border-[#C65D2E]/50 text-center text-[8.5px] font-bold text-[#E27D4C] mt-auto"
           >
-            ✓ Qualification Note Logged → Direct Calendar Link Sent
+            ✓ Meeting Booked on Calendar • Call Recorded & Transcribed
           </motion.div>
+        </div>
+
+        {/* In-Call Keypad Controls */}
+        <div className="grid grid-cols-3 gap-2 pt-3 border-t border-white/10 mt-auto">
+          <div className="flex flex-col items-center gap-1">
+            <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-xs">
+              🎙️
+            </div>
+            <span className="text-[7.5px] text-white/60">Mute</span>
+          </div>
+          <div className="flex flex-col items-center gap-1">
+            <div className="w-8 h-8 rounded-full bg-[#C65D2E] flex items-center justify-center text-xs text-white">
+              📝
+            </div>
+            <span className="text-[7.5px] text-[#E27D4C]">Notes</span>
+          </div>
+          <div className="flex flex-col items-center gap-1">
+            <div className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center text-xs text-white">
+              ✕
+            </div>
+            <span className="text-[7.5px] text-white/60">End</span>
+          </div>
         </div>
       </div>
     </div>
@@ -517,7 +570,7 @@ function ColdCallingDemo({ isPaused, replayKey }: { isPaused: boolean; replayKey
 }
 
 // ——————————————————————————————————————————————————
-// DEMO 04: APPOINTMENT SETTING SMARTPHONE DEMO
+// DEMO 04: APPOINTMENT SETTING SMARTPHONE DEMO (CALENDAR BOOKING APP)
 // ——————————————————————————————————————————————————
 function AppointmentSettingDemo({ isPaused, replayKey }: { isPaused: boolean; replayKey: number }) {
   const [selectedSlot, setSelectedSlot] = useState("Thu 2:30 PM");
@@ -528,59 +581,88 @@ function AppointmentSettingDemo({ isPaused, replayKey }: { isPaused: boolean; re
         <span className="w-1.5 h-1.5 rounded-full bg-[#1e293b]/90 border border-white/10" />
       </div>
 
-      <div className="relative bg-[#FAF9F6] rounded-[34px] overflow-hidden pt-6 pb-3 px-3 flex flex-col h-[445px]">
+      {/* Screen Frame — Native Calendar Scheduling App */}
+      <div className="relative bg-[#FAFAFA] rounded-[34px] overflow-hidden pt-6 pb-2.5 px-3 flex flex-col h-[445px]">
         {/* Header */}
-        <div className="flex items-center justify-between pb-2 mb-2 border-b border-[#071525]/[0.08]">
+        <div className="flex items-center justify-between pb-2 mb-2 border-b border-[#071525]/[0.08] bg-white -mx-3 -mt-1 px-3 pt-2">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-xl bg-[#F7E7DF] text-[#C65D2E] flex items-center justify-center font-bold text-xs">
+            <div className="w-7 h-7 rounded-xl bg-[#F7E7DF] text-[#C65D2E] flex items-center justify-center font-bold text-xs shadow-xs">
               📅
             </div>
             <div>
-              <span className="text-[11px] font-bold text-[#071525] leading-none">30-min Strategy Call</span>
-              <span className="text-[8px] text-[#526071] mt-0.5">Qualified Lead • VP Decision-Maker</span>
+              <span className="text-[11px] font-bold text-[#071525] leading-none block">
+                Book a Strategy Call
+              </span>
+              <span className="text-[8px] text-[#526071] mt-0.5">30 mins • Google Meet</span>
             </div>
           </div>
-          <span className="px-1.5 py-0.5 rounded-full bg-[#C65D2E] text-white text-[8px] font-bold">
-            Confirmed
+          <span className="px-2 py-0.5 rounded-full bg-[#C65D2E] text-white text-[8px] font-bold">
+            Live Booking
           </span>
         </div>
 
-        {/* Slot Selector */}
-        <div className="p-2.5 rounded-2xl bg-white border border-[#071525]/[0.06] mb-2 shadow-2xs">
-          <span className="text-[8.5px] font-bold text-[#526071] uppercase tracking-wider block mb-1.5 font-mono">
-            SELECT AVAILABLE SLOT
-          </span>
-          <div className="grid grid-cols-2 gap-1.5">
-            {["Wed 11:00 AM", "Wed 3:00 PM", "Thu 2:30 PM", "Fri 10:30 AM"].map((slot) => (
-              <button
-                type="button"
-                key={slot}
-                onClick={() => setSelectedSlot(slot)}
-                className={`py-1 px-1.5 rounded-lg text-[9px] font-semibold border transition-all ${
-                  selectedSlot === slot
-                    ? "bg-[#C65D2E] text-white border-[#C65D2E] shadow-2xs"
-                    : "bg-[#FAF9F6] text-[#071525] border-[#071525]/[0.08]"
-                }`}
-              >
-                {slot}
-              </button>
-            ))}
+        {/* Content */}
+        <div className="flex-1 flex flex-col gap-2 overflow-hidden text-[10px]">
+          {/* Host info */}
+          <div className="bg-white p-2.5 rounded-xl border border-[#071525]/[0.06] shadow-2xs">
+            <span className="text-[8px] font-mono text-[#526071] uppercase block mb-1">
+              MEETING DETAILS
+            </span>
+            <p className="text-[9px] text-[#071525] font-semibold">
+              B2B Outbound Blueprint & ICP Discovery
+            </p>
+            <p className="text-[8px] text-[#526071] mt-0.5">
+              Host: LeadScorpio Growth Specialist
+            </p>
+          </div>
+
+          {/* Slot Selector */}
+          <div className="p-2.5 rounded-xl bg-white border border-[#071525]/[0.06] shadow-2xs">
+            <span className="text-[8px] font-bold text-[#526071] uppercase tracking-wider block mb-1.5 font-mono">
+              SELECT TIME (YOUR TIMEZONE)
+            </span>
+            <div className="grid grid-cols-2 gap-1.5">
+              {["Wed 11:00 AM", "Wed 3:00 PM", "Thu 2:30 PM", "Fri 10:30 AM"].map((slot) => (
+                <button
+                  type="button"
+                  key={slot}
+                  onClick={() => setSelectedSlot(slot)}
+                  className={`py-1.5 px-2 rounded-lg text-[9px] font-semibold border transition-all cursor-pointer ${
+                    selectedSlot === slot
+                      ? "bg-[#C65D2E] text-white border-[#C65D2E] shadow-xs"
+                      : "bg-[#FAF9F6] text-[#071525] border-[#071525]/[0.08] hover:border-[#C65D2E]/40"
+                  }`}
+                >
+                  {slot}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Confirmation Card */}
+          <div className="p-2.5 rounded-xl bg-[#EBF7EE] border border-[#7BC68E]/40 text-xs mt-auto">
+            <div className="flex items-center gap-1.5 mb-1">
+              <CheckCircle2 size={13} className="text-[#154622]" />
+              <span className="font-bold text-[#154622] text-[9.5px]">Selected: {selectedSlot}</span>
+            </div>
+            <p className="text-[8.5px] text-[#154622]/90 leading-relaxed">
+              Direct calendar invitation and video link will be sent to the prospect automatically.
+            </p>
+          </div>
+
+          <div className="p-2 rounded-xl bg-[#FFF4ED] border border-[#C65D2E]/30 text-center text-[8.5px] font-bold text-[#C65D2E]">
+            ⚡ Real-time Calendar Sync • Instant Confirmation
           </div>
         </div>
 
-        {/* Confirmation Card */}
-        <div className="p-2.5 rounded-2xl bg-[#EBF7EE] border border-[#7BC68E]/40 text-xs">
-          <div className="flex items-center gap-1.5 mb-1">
-            <CheckCircle2 size={13} className="text-[#154622]" />
-            <span className="font-bold text-[#154622] text-[10px]">Calendar Invite Dispatched</span>
-          </div>
-          <p className="text-[9px] text-[#154622]/90 leading-relaxed">
-            Slot: <span className="font-semibold">{selectedSlot}</span> • Google Meet link & briefing notes sent directly to your sales team.
-          </p>
-        </div>
-
-        <div className="p-2 rounded-xl bg-[#FFF4ED] border border-[#C65D2E]/30 text-center text-[8.5px] font-bold text-[#C65D2E] mt-2">
-          ⚡ Sales handoff complete — Invite logged in CRM
+        {/* Footer Confirm Action */}
+        <div className="pt-2 border-t border-[#071525]/[0.07] bg-white -mx-3 -mb-1 px-3 py-1.5">
+          <button
+            type="button"
+            className="w-full py-1.5 rounded-full bg-[#C65D2E] text-white text-[9px] font-bold text-center block shadow-2xs"
+          >
+            Confirm {selectedSlot}
+          </button>
         </div>
       </div>
     </div>
@@ -635,9 +717,8 @@ export default function ServicesSection() {
             className="lg:col-span-8 flex flex-col items-start gap-3"
           >
             <div className="inline-flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-brand-copper)]" />
               <span className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-[var(--color-brand-copper)]">
-                03 / SERVICES
+                SERVICES
               </span>
             </div>
 

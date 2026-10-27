@@ -101,9 +101,8 @@ export default function HowItWorksSection() {
           >
             {/* Eyebrow */}
             <div className="inline-flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#C65D2E]" />
               <span className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-[#C65D2E]">
-                04 / OUR PROCESS
+                OUR PROCESS
               </span>
             </div>
 

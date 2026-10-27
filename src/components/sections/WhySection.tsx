@@ -413,9 +413,8 @@ export default function WhySection() {
               className="lg:col-span-8 flex flex-col items-start gap-3"
             >
               <div className="inline-flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-brand-copper)]" />
                 <span className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-[var(--color-brand-copper)]">
-                  05 / PRECISION OUTBOUND
+                  PRECISION OUTBOUND
                 </span>
               </div>
 
@@ -641,7 +640,6 @@ export default function WhySection() {
           >
             {/* Eyebrow */}
             <div className="inline-flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-brand-copper)]" />
               <span className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-[var(--color-brand-copper)]">
                 WHO WE WORK WITH
               </span>

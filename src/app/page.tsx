@@ -24,6 +24,7 @@ const HowItWorksSection  = dynamic(() => import("@/components/sections/HowItWork
 const WhySection         = dynamic(() => import("@/components/sections/WhySection").then(m => m.default),         { ssr: false });
 const AboutSection       = dynamic(() => import("@/components/sections/AboutSection").then(m => m.default),       { ssr: false });
 const ContactSection     = dynamic(() => import("@/components/sections/ContactSection").then(m => m.default),     { ssr: false });
+const ClientLogosSection = dynamic(() => import("@/components/sections/ClientLogosSection").then(m => m.default), { ssr: false });
 
 // ——————————————————————————————————————————
 // HERO SECTION — EDITORIAL B2B DESIGN
@@ -466,9 +467,8 @@ function ProblemSection() {
           >
             {/* Eyebrow */}
             <div className="inline-flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-brand-copper)]" />
               <span className="text-xs font-mono font-bold tracking-[0.2em] uppercase text-[var(--color-brand-copper)]">
-                02 / THE OUTBOUND REALITY
+                THE OUTBOUND REALITY
               </span>
             </div>
 
@@ -600,6 +600,7 @@ export default function Home() {
       <Navbar />
       <main className="flex flex-col overflow-hidden">
         <HeroSection />
+        <ClientLogosSection />
         <ProblemSection />
         <ServicesSection />
         <HowItWorksSection />

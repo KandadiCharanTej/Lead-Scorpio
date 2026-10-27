@@ -49,7 +49,6 @@ export default function AboutSection() {
               {/* Eyebrow */}
               <div className="flex flex-col items-center gap-2 mb-6 sm:mb-8">
                 <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#C65D2E]" />
                   <span className="text-[11px] sm:text-xs font-mono font-bold tracking-[0.25em] uppercase text-[#C65D2E]">
                     OUR PHILOSOPHY
                   </span>
@@ -156,34 +155,24 @@ export default function AboutSection() {
           }}
         />
 
-        <div className="max-w-7xl mx-auto px-6 md:px-10 relative z-10">
+        <div className="max-w-6xl mx-auto px-6 md:px-10 relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="relative flex flex-col items-center border border-[#C65D2E]/30 bg-white shadow-[0_20px_60px_-15px_rgba(7,21,37,0.06)] overflow-hidden"
+            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+            className="relative flex flex-col items-center border border-[#C65D2E]/30 bg-white shadow-[0_20px_60px_-15px_rgba(7,21,37,0.07)] overflow-hidden"
           >
-            {/* Background DotPattern inside the card (plain, clean texture) */}
-            <DotPattern
-              width={20}
-              height={20}
-              cx={1}
-              cy={1}
-              cr={0.8}
-              className="fill-[#071525]/12 md:fill-[#071525]/15"
-            />
-
-            {/* Corner square anchors (Scorpio brand copper, enlarged) */}
-            <div className="absolute -left-2.5 -top-2.5 h-5 w-5 bg-[#C65D2E] shadow-sm z-30" />
-            <div className="absolute -bottom-2.5 -left-2.5 h-5 w-5 bg-[#C65D2E] shadow-sm z-30" />
-            <div className="absolute -right-2.5 -top-2.5 h-5 w-5 bg-[#C65D2E] shadow-sm z-30" />
-            <div className="absolute -bottom-2.5 -right-2.5 h-5 w-5 bg-[#C65D2E] shadow-sm z-30" />
+            {/* Corner square anchors */}
+            <div className="absolute -left-2.5 -top-2.5 h-4.5 w-4.5 bg-[#C65D2E] shadow-xs z-30" />
+            <div className="absolute -bottom-2.5 -left-2.5 h-4.5 w-4.5 bg-[#C65D2E] shadow-xs z-30" />
+            <div className="absolute -right-2.5 -top-2.5 h-4.5 w-4.5 bg-[#C65D2E] shadow-xs z-30" />
+            <div className="absolute -bottom-2.5 -right-2.5 h-4.5 w-4.5 bg-[#C65D2E] shadow-xs z-30" />
 
             {/* Content Container */}
-            <div className="relative z-20 w-full max-w-6xl px-6 py-12 sm:px-12 sm:py-16 md:px-16 md:py-24 xl:py-28 text-left">
+            <div className="relative z-20 w-full px-6 py-12 sm:px-12 sm:py-14 md:px-16 md:py-18 text-left">
               {/* Eyebrow badge */}
-              <div className="flex items-center gap-3 mb-6 sm:mb-8">
+              <div className="flex items-center gap-3 mb-6 sm:mb-7">
                 <span className="w-2 h-2 rounded-full bg-[#C65D2E]" />
                 <p className="text-xs sm:text-sm font-bold tracking-[0.2em] uppercase text-[#C65D2E]">
                   Why Scorpio? — The Principle
@@ -191,29 +180,29 @@ export default function AboutSection() {
               </div>
 
               {/* Bold Alternating Quote Typography */}
-              <div className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tighter text-[#071525] leading-[1.12] sm:leading-[1.1] mb-8 sm:mb-12">
-                <div className="flex flex-wrap items-baseline gap-x-2 sm:gap-x-3.5 md:gap-x-4">
+              <div className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tighter text-[#071525] leading-[1.12] sm:leading-[1.1] mb-8 sm:mb-10">
+                <div className="flex flex-wrap items-baseline gap-x-2 sm:gap-x-3">
                   <span className="font-extrabold">&ldquo;Focus,</span>
                   <span className="font-extralight text-[#526071]">patience,</span>
                   <span className="font-extrabold text-[#C65D2E]">precision,</span>
                 </div>
-                <div className="flex flex-wrap items-baseline gap-x-2 sm:gap-x-3.5 md:gap-x-4">
+                <div className="flex flex-wrap items-baseline gap-x-2 sm:gap-x-3">
                   <span className="font-extralight text-[#526071]">and</span>
                   <span className="font-extrabold">persistence</span>
                   <span className="font-extralight text-[#526071]">are the</span>
                 </div>
-                <div className="flex flex-wrap items-baseline gap-x-2 sm:gap-x-3.5 md:gap-x-4">
+                <div className="flex flex-wrap items-baseline gap-x-2 sm:gap-x-3">
                   <span className="font-extralight text-[#526071]">foundations of</span>
                   <span className="font-extrabold text-[#071525]">every qualified</span>
                 </div>
-                <div className="flex flex-wrap items-baseline gap-x-2 sm:gap-x-3.5 md:gap-x-4">
+                <div className="flex flex-wrap items-baseline gap-x-2 sm:gap-x-3">
                   <span className="font-extrabold text-[#C65D2E]">pipeline.&rdquo;</span>
                 </div>
               </div>
 
               {/* Bottom Details Footer inside the card */}
-              <div className="pt-8 sm:pt-10 border-t border-[#071525]/10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-                <p className="text-sm sm:text-base md:text-lg text-[#526071] max-w-2xl leading-relaxed">
+              <div className="pt-7 sm:pt-8 border-t border-[#071525]/10 flex flex-col md:flex-row md:items-center justify-between gap-5 sm:gap-6">
+                <p className="text-sm sm:text-base text-[#526071] max-w-2xl leading-relaxed">
                   We don’t rush. We don’t spray and pray. We identify, engage, and build the right conversations with verified B2B decision-makers — systematically.
                 </p>
 

@@ -12,7 +12,6 @@ export default function ContactSection() {
     company: "",
     website: "",
     sell: "",
-    customer: "",
     achieve: "",
   });
 
@@ -58,8 +57,7 @@ export default function ContactSection() {
         `Company: ${formData.company || "N/A"}\n` +
         `Website: ${formData.website || "N/A"}\n\n` +
         `What do you sell:\n${formData.sell || "N/A"}\n\n` +
-        `Ideal customer:\n${formData.customer || "N/A"}\n\n` +
-        `Looking to achieve:\n${formData.achieve || "N/A"}`
+        `What are you looking to achieve:\n${formData.achieve || "N/A"}`
       );
       window.location.href = `mailto:hello@leadscorpio.com?subject=${subject}&body=${body}`;
       setStatus("success");
@@ -260,23 +258,7 @@ export default function ContactSection() {
                 />
               </div>
 
-              {/* Row 4: Who is your ideal customer? */}
-              <div className="flex flex-col gap-2 text-left">
-                <label htmlFor="contact-customer" className="text-xs font-bold text-[#071525] tracking-wide">
-                  Who is your ideal customer?
-                </label>
-                <textarea
-                  id="contact-customer"
-                  name="customer"
-                  rows={2}
-                  value={formData.customer}
-                  onChange={handleChange}
-                  placeholder="e.g. industry, company size, role, location"
-                  className="w-full bg-[#FAF9F6] border border-[#071525]/15 focus:border-[#C65D2E] focus:bg-white rounded-xl px-4 py-3 text-sm text-[#071525] placeholder:text-[#526071]/50 focus:outline-none focus:ring-2 focus:ring-[#C65D2E]/10 transition-all duration-200 resize-none"
-                />
-              </div>
-
-              {/* Row 5: What are you looking to achieve? */}
+              {/* Row 4: What are you looking to achieve? */}
               <div className="flex flex-col gap-2 text-left">
                 <label htmlFor="contact-achieve" className="text-xs font-bold text-[#071525] tracking-wide">
                   What are you looking to achieve?
