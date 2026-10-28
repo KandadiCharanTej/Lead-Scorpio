@@ -400,6 +400,11 @@ export default function ContactSection() {
                   </li>
                   <li>
                     <a href="#services" className="hover:text-white transition-colors duration-200">
+                      WhatsApp Marketing
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#services" className="hover:text-white transition-colors duration-200">
                       Appointment Setting
                     </a>
                   </li>

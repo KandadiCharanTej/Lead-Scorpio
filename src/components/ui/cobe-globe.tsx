@@ -32,6 +32,7 @@ export interface GlobeProps {
   arcHeight?: number
   speed?: number
   theta?: number
+  initialPhi?: number
   diffuse?: number
   mapSamples?: number
 }
@@ -52,6 +53,7 @@ export function Globe({
   arcHeight = 0.22,
   speed = 0.0025,
   theta = 0.22,
+  initialPhi = 0,
   diffuse = 1.6,
   mapSamples = 16000,
 }: GlobeProps) {
@@ -123,7 +125,7 @@ export function Globe({
     const canvas = canvasRef.current
     let globe: ReturnType<typeof createGlobe> | null = null
     let animationId: number
-    let phi = 0
+    let phi = initialPhi
 
     function init() {
       const width = canvas.offsetWidth
@@ -134,7 +136,7 @@ export function Globe({
         devicePixelRatio: dpr,
         width,
         height: width,
-        phi: 0,
+        phi: initialPhi,
         theta,
         dark,
         diffuse,
@@ -237,6 +239,7 @@ export function Globe({
     arcHeight,
     speed,
     theta,
+    initialPhi,
     diffuse,
     mapSamples,
   ])

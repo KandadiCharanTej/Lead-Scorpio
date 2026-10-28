@@ -158,6 +158,49 @@ const services: ServiceData[] = [
   {
     id: 4,
     number: "04",
+    tabTitle: "WhatsApp Marketing",
+    title: "WhatsApp Marketing",
+    headline: "Turn WhatsApp Conversations Into Business Opportunities.",
+    description:
+      "Engage your audience through WhatsApp campaigns and follow-up messages, manage responses, and turn interested enquiries into potential appointments.",
+    benefits: [
+      { icon: Send, text: "Campaign Messaging" },
+      { icon: MessageSquare, text: "Follow-Up Coordination" },
+      { icon: Users, text: "Response Handling" },
+      { icon: Target, text: "Lead Qualification" },
+      { icon: Sparkles, text: "Basic Activity Reporting" },
+    ],
+    ctaText: "DISCUSS YOUR WHATSAPP CAMPAIGN",
+    workflowSteps: [
+      {
+        num: "01",
+        icon: Send,
+        title: "Campaign Messaging",
+        desc: "Create relevant campaign messages tailored to your audience and business offer.",
+      },
+      {
+        num: "02",
+        icon: MessageSquare,
+        title: "Follow-Up Coordination",
+        desc: "Maintain consistent communication with timely, relevant follow-up messages.",
+      },
+      {
+        num: "03",
+        icon: Users,
+        title: "Response Handling",
+        desc: "Manage incoming enquiries and identify prospects who show genuine interest.",
+      },
+      {
+        num: "04",
+        icon: Target,
+        title: "Lead Qualification",
+        desc: "Identify relevant enquiries and coordinate the next steps toward potential appointments.",
+      },
+    ],
+  },
+  {
+    id: 5,
+    number: "05",
     tabTitle: "Appointment Setting",
     title: "Appointment Setting",
     headline: "Turn qualified interest into booked meetings.",
@@ -674,6 +717,167 @@ function AppointmentSettingDemo({ isPaused, replayKey }: { isPaused: boolean; re
 }
 
 // ——————————————————————————————————————————————————
+// DEMO 04: WHATSAPP MARKETING SMARTPHONE DEMO
+// ——————————————————————————————————————————————————
+function WhatsAppDemo({ isPaused, replayKey }: { isPaused: boolean; replayKey: number }) {
+  const [animStage, setAnimStage] = useState(0);
+
+  useEffect(() => {
+    setAnimStage(0);
+    if (isPaused) return;
+
+    const t1 = setTimeout(() => setAnimStage(1), 500);  // Campaign introduction message
+    const t2 = setTimeout(() => setAnimStage(2), 1400); // Personalized follow-up message
+    const t3 = setTimeout(() => setAnimStage(3), 2300); // Customer enquiry
+    const t4 = setTimeout(() => setAnimStage(4), 3200); // Business answer
+    const t5 = setTimeout(() => setAnimStage(5), 4100); // Customer ready for appointment
+    const t6 = setTimeout(() => setAnimStage(6), 4900); // Ready for appointment scheduled badge
+
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      clearTimeout(t4);
+      clearTimeout(t5);
+      clearTimeout(t6);
+    };
+  }, [replayKey, isPaused]);
+
+  return (
+    <div className="relative w-[280px] sm:w-[305px] bg-[#0c1622] rounded-[42px] p-2 shadow-[0_24px_50px_rgba(7,21,37,0.16)] border border-[#223347] ring-1 ring-[#071525]/80 select-none">
+      {/* Dynamic Island */}
+      <div className="absolute top-3 left-1/2 -translate-x-1/2 w-20 h-3.5 bg-black rounded-full z-30 flex items-center justify-end pr-2.5">
+        <span className="w-1.5 h-1.5 rounded-full bg-[#1e293b]/90 border border-white/10" />
+      </div>
+
+      {/* Screen Frame — WhatsApp Business App UI */}
+      <div className="relative bg-[#EFEAE2] rounded-[34px] overflow-hidden pb-2.5 px-3 flex flex-col h-[445px]">
+        {/* WhatsApp Business Header — fills completely to the top behind dynamic island */}
+        <div className="flex items-center justify-between pb-2.5 mb-1.5 border-b border-[#054D44]/25 bg-[#075E54] text-white -mx-3 px-3 pt-7 shadow-xs">
+          <div className="flex items-center gap-2">
+            <div className="relative">
+              <div className="w-8 h-8 rounded-full bg-[#128C7E] text-white flex items-center justify-center text-[10px] font-bold shadow-xs border border-white/20">
+                SC
+              </div>
+              <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-[#25D366] border-2 border-[#075E54]" />
+            </div>
+            <div className="flex flex-col">
+              <div className="flex items-center gap-1.5">
+                <span className="text-[11px] font-bold text-white leading-none">Apex Logistics</span>
+                <span className="text-[8px] bg-white/20 px-1 py-0.2 rounded text-white/90 font-medium">Business</span>
+              </div>
+              <span className="text-[8px] text-white/80 mt-0.5 truncate max-w-[130px]">
+                Daniel Reyes • Operations Lead
+              </span>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-1 text-[11px] text-white/90">
+            <span className="text-[8px] bg-[#25D366]/20 border border-[#25D366]/40 text-[#25D366] px-1.5 py-0.5 rounded-full font-bold">
+              Verified
+            </span>
+          </div>
+        </div>
+
+        {/* Chat Thread */}
+        <div className="flex-1 flex flex-col gap-1.5 overflow-hidden text-[9px] pt-1 pb-1">
+          {/* Encrypted Notice Banner */}
+          <div className="bg-[#FFEECD] p-1.5 rounded-lg border border-[#E8D4A8] text-center shadow-2xs mx-2 mb-0.5">
+            <p className="text-[7.5px] text-[#665533] leading-tight">
+              🔒 Official WhatsApp Campaign • Qualified by LeadScorpio
+            </p>
+          </div>
+
+          {/* Message 1: Realistic Campaign Intro Message */}
+          <motion.div
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: animStage >= 1 ? 1 : 0, y: animStage >= 1 ? 0 : 6 }}
+            className="bg-white p-2 rounded-xl rounded-tl-xs border border-[#D1D7DB] shadow-2xs max-w-[88%] self-start"
+          >
+            <p className="text-[7.5px] text-[#075E54] font-bold mb-0.5">Campaign Outreach</p>
+            <p className="text-[#111B21] leading-relaxed">
+              Hi Daniel 👋 Noticed Apex Logistics is expanding fleet ops in Dallas. We help logistics teams reduce dispatch delays by 35%.
+            </p>
+            <span className="text-[7px] text-[#667781] block text-right mt-0.5">10:15 AM</span>
+          </motion.div>
+
+          {/* Message 2: Personalized Follow-up Message */}
+          <motion.div
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: animStage >= 2 ? 1 : 0, y: animStage >= 2 ? 0 : 6 }}
+            className="bg-white p-2 rounded-xl rounded-tl-xs border border-[#D1D7DB] shadow-2xs max-w-[88%] self-start"
+          >
+            <p className="text-[#111B21] leading-relaxed">
+              Curious if automating driver route handoffs is on your Q3 roadmap?
+            </p>
+            <span className="text-[7px] text-[#667781] block text-right mt-0.5">10:16 AM</span>
+          </motion.div>
+
+          {/* Message 3: Customer Asking about Product/Service */}
+          <motion.div
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: animStage >= 3 ? 1 : 0, y: animStage >= 3 ? 0 : 6 }}
+            className="bg-[#D9FDD3] p-2 rounded-xl rounded-tr-xs border border-[#A7E89C] shadow-2xs max-w-[86%] self-end"
+          >
+            <p className="text-[#111B21] leading-relaxed">
+              Yes, routing bottleneck is a priority right now. Does your solution integrate with Samsara TMS?
+            </p>
+            <span className="text-[7px] text-[#53BDEB] block text-right mt-0.5 font-bold">10:22 AM ✓✓</span>
+          </motion.div>
+
+          {/* Message 4: Business Response Answering Enquiry */}
+          <motion.div
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: animStage >= 4 ? 1 : 0, y: animStage >= 4 ? 0 : 6 }}
+            className="bg-white p-2 rounded-xl rounded-tl-xs border border-[#D1D7DB] shadow-2xs max-w-[88%] self-start"
+          >
+            <p className="text-[#111B21] leading-relaxed">
+              Yes! Native bidirectional sync with Samsara in under 48 hours. Plug-and-play for your fleet.
+            </p>
+            <span className="text-[7px] text-[#667781] block text-right mt-0.5">10:23 AM</span>
+          </motion.div>
+
+          {/* Message 5: Interested Customer Asking about Availability */}
+          <motion.div
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: animStage >= 5 ? 1 : 0, y: animStage >= 5 ? 0 : 6 }}
+            className="bg-[#D9FDD3] p-2 rounded-xl rounded-tr-xs border border-[#A7E89C] shadow-2xs max-w-[86%] self-end"
+          >
+            <p className="text-[#111B21] leading-relaxed">
+              Sounds promising. Do you have availability for a brief call Thursday afternoon?
+            </p>
+            <span className="text-[7px] text-[#53BDEB] block text-right mt-0.5 font-bold">10:25 AM ✓✓</span>
+          </motion.div>
+
+          {/* Final Message / Ready for Appointment Status */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: animStage >= 6 ? 1 : 0, scale: animStage >= 6 ? 1 : 0.95 }}
+            className="bg-[#075E54] text-white p-2 rounded-xl border border-[#128C7E] shadow-2xs text-center mt-auto"
+          >
+            <div className="flex items-center justify-center gap-1.5 text-[8px] font-bold text-[#25D366]">
+              <span>✓ Enquiry Qualified</span>
+              <span>•</span>
+              <span className="text-white">Ready for Appointment Scheduling</span>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* WhatsApp Input Mock Bar */}
+        <div className="pt-1.5 border-t border-[#D1D7DB] bg-[#F0F2F5] -mx-3 -mb-1 px-3 py-1 flex items-center justify-between gap-1.5 text-[9px] text-[#54656F]">
+          <span className="bg-white rounded-full px-2.5 py-1 text-[8px] text-[#54656F] flex-1 border border-[#E9EDEF]">
+            Type a message...
+          </span>
+          <div className="w-5 h-5 rounded-full bg-[#128C7E] text-white flex items-center justify-center text-[9px]">
+            <Send size={9} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ——————————————————————————————————————————————————
 // MAIN CORE SERVICES SECTION
 // ——————————————————————————————————————————————————
 export default function ServicesSection() {
@@ -684,12 +888,22 @@ export default function ServicesSection() {
   const current = services.find((s) => s.id === activeTab) || services[0];
 
   const handleDiscussService = (serviceName: string) => {
-    const contactInput = document.querySelector(
-      'input[placeholder*="B2B Software"]'
-    ) as HTMLInputElement;
-    if (contactInput) {
-      contactInput.value = `Inquiry regarding ${serviceName}`;
-      contactInput.focus();
+    // Populate either 'achieve' or 'sell' in the contact form with the chosen service
+    const achieveTextarea = document.getElementById("contact-achieve") as HTMLTextAreaElement | null;
+    const sellTextarea = document.getElementById("contact-sell") as HTMLTextAreaElement | null;
+    const genericInput = document.querySelector('input[placeholder*="B2B Software"]') as HTMLInputElement | null;
+
+    const message = `Inquiry regarding ${serviceName}`;
+
+    if (achieveTextarea) {
+      achieveTextarea.value = message;
+      achieveTextarea.focus();
+    } else if (sellTextarea) {
+      sellTextarea.value = message;
+      sellTextarea.focus();
+    } else if (genericInput) {
+      genericInput.value = message;
+      genericInput.focus();
     }
   };
 
@@ -731,7 +945,7 @@ export default function ServicesSection() {
             </h2>
 
             <p className="text-lg sm:text-xl font-bold text-[var(--color-brand-navy)] tracking-tight">
-              One <span className="text-[var(--color-brand-copper)]">precise</span> outbound system. Four ways to start conversations.
+              One <span className="text-[var(--color-brand-copper)]">precise</span> outbound system. Five ways to start conversations.
             </p>
           </motion.div>
 
@@ -749,8 +963,8 @@ export default function ServicesSection() {
           </motion.div>
         </div>
 
-        {/* Four Horizontal Service Selectors matching Reference */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8">
+        {/* Five Horizontal Service Selectors matching Reference */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-3.5 mb-8">
           {services.map((service) => {
             const isActive = activeTab === service.id;
             return (
@@ -761,15 +975,15 @@ export default function ServicesSection() {
                   setActiveTab(service.id);
                   setReplayKey((prev) => prev + 1);
                 }}
-                className={`flex items-center justify-between p-3.5 sm:p-4 rounded-2xl border transition-all duration-300 text-left group ${
+                className={`flex items-center justify-between p-3 sm:p-3.5 rounded-2xl border transition-all duration-300 text-left group cursor-pointer ${
                   isActive
                     ? "bg-[#FAF9F6] border-[#C65D2E]/40 shadow-sm ring-1 ring-[#C65D2E]/20"
                     : "bg-white/80 border-[#071525]/[0.08] hover:border-[#C65D2E]/30 hover:bg-white"
                 }`}
               >
-                <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+                <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
                   <span
-                    className={`text-sm font-mono font-bold transition-colors ${
+                    className={`text-xs sm:text-sm font-mono font-bold transition-colors ${
                       isActive ? "text-[#C65D2E]" : "text-[#526071]/60 group-hover:text-[#C65D2E]"
                     }`}
                   >
@@ -777,18 +991,29 @@ export default function ServicesSection() {
                   </span>
 
                   <div
-                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
+                    className={`w-7 h-7 sm:w-7.5 sm:h-7.5 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
                       isActive ? "bg-[#C65D2E] text-white" : "bg-[#F7E7DF] text-[#C65D2E]"
                     }`}
                   >
                     {service.id === 1 && <span className="font-bold text-xs">in</span>}
-                    {service.id === 2 && <Mail size={14} />}
-                    {service.id === 3 && <Phone size={14} />}
-                    {service.id === 4 && <CalendarCheck size={14} />}
+                    {service.id === 2 && <Mail size={13} />}
+                    {service.id === 3 && <Phone size={13} />}
+                    {service.id === 4 && (
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="14"
+                        height="14"
+                        fill="currentColor"
+                        className="shrink-0"
+                      >
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                      </svg>
+                    )}
+                    {service.id === 5 && <CalendarCheck size={13} />}
                   </div>
 
                   <span
-                    className={`text-xs sm:text-sm font-bold truncate transition-colors ${
+                    className={`text-[11px] sm:text-xs font-bold truncate transition-colors ${
                       isActive ? "text-[#071525]" : "text-[#526071] group-hover:text-[#071525]"
                     }`}
                   >
@@ -797,13 +1022,13 @@ export default function ServicesSection() {
                 </div>
 
                 <div
-                  className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 transition-all ${
+                  className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 transition-all ${
                     isActive
                       ? "bg-[#C65D2E] text-white"
                       : "bg-[#071525]/[0.04] text-[#526071] group-hover:bg-[#C65D2E]/10 group-hover:text-[#C65D2E]"
                   }`}
                 >
-                  <ArrowRight size={12} />
+                  <ArrowRight size={11} />
                 </div>
               </button>
             );
@@ -819,17 +1044,17 @@ export default function ServicesSection() {
           />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
-            {/* Left Column: Short Headline, Description, 3 Benefits & CTA */}
+            {/* Left Column: Short Headline, Description, Benefits & CTA */}
             <div className="lg:col-span-4 flex flex-col items-start">
               {/* Progress Index Badge */}
               <div className="flex items-center gap-2 mb-3">
                 <span className="text-xs font-mono font-bold text-[#E27D4C]">
-                  {current.number} / 04
+                  {current.number} / 05
                 </span>
                 <div className="w-16 h-1 bg-white/10 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-[#C65D2E] transition-all duration-300"
-                    style={{ width: `${(current.id / 4) * 100}%` }}
+                    style={{ width: `${(current.id / 5) * 100}%` }}
                   />
                 </div>
               </div>
@@ -847,7 +1072,7 @@ export default function ServicesSection() {
                 {current.description}
               </p>
 
-              {/* 3 Key Benefits */}
+              {/* Key Benefits */}
               <div className="flex flex-col gap-3.5 mb-8 w-full">
                 {current.benefits.map((benefit, idx) => {
                   const Icon = benefit.icon;
@@ -887,7 +1112,8 @@ export default function ServicesSection() {
                   {current.id === 1 && <LinkedInDemo isPaused={isPaused} replayKey={replayKey} />}
                   {current.id === 2 && <ColdEmailDemo isPaused={isPaused} replayKey={replayKey} />}
                   {current.id === 3 && <ColdCallingDemo isPaused={isPaused} replayKey={replayKey} />}
-                  {current.id === 4 && (
+                  {current.id === 4 && <WhatsAppDemo isPaused={isPaused} replayKey={replayKey} />}
+                  {current.id === 5 && (
                     <AppointmentSettingDemo isPaused={isPaused} replayKey={replayKey} />
                   )}
                 </motion.div>
